@@ -1,0 +1,22 @@
+﻿<Window x:Class="MyButton.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyButton"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Button x:Name="btnA" Height="30" Click="ButtonTestA_Click">测试_A</Button>
+            <Button x:Name="btnB" Height="30" Click="ButtonTestB_Click">测试_B</Button>
+            <Button x:Name="btnPaste" Height="30"></Button>
+            <CheckBox x:Name="checkBox" Height="30" VerticalContentAlignment="Center" Background="Green" Foreground="Green">Window Topmost</CheckBox>
+            <Label x:Name="label" Height="30">_LABEL</Label>
+            <TextBlock Height="30" VerticalAlignment="Center">_TEXTBLOCK</TextBlock>
+            <TextBox x:Name="textBox" Height="30" VerticalContentAlignment="Center">http://</TextBox>
+            <Button Height="30" Click="ButtonNavigateWeb_Click">Navigate to web</Button>
+            <Button Height="30" Click="ButtonRichTextBox_Click">RichTextBox</Button>
+        </StackPanel>
+    </Grid>
+</Window>
