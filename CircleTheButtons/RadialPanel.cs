@@ -53,8 +53,9 @@ namespace CircleTheButtons
 
             foreach(UIElement child in InternalChildren)
             {
-                child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));      //默认子元素的可用尺寸为正无穷大
 
+                //找出期望尺寸最大的子元素
                 sizeLargest.Width = Math.Max(sizeLargest.Width, child.DesiredSize.Width);
                 sizeLargest.Height = Math.Max(sizeLargest.Height, child.DesiredSize.Height);
             }
@@ -62,7 +63,7 @@ namespace CircleTheButtons
             if (Orientation == RadialPanelOrientation.ByWidth)
             {
                 //计算中心到Element边缘的距离
-                innerEdgeFromCenter = sizeLargest.Width / 2 / Math.Tan(Math.PI * angleEach / 360);
+                innerEdgeFromCenter = sizeLargest.Width / 2 / Math.Tan(Math.PI * angleEach / 360);      
                 outerEdgeFromCenter = innerEdgeFromCenter + sizeLargest.Height;
 
                 //以最大孩子为基准，计算椭圆的半径
@@ -85,8 +86,8 @@ namespace CircleTheButtons
         protected override Size ArrangeOverride(Size finalSize)
         {
             double angleChild = 0;
-            Point ptCenter = new Point(finalSize.Width / 2, finalSize.Height / 2);
-            double multiplier = Math.Min(finalSize.Width / (2 * radius), finalSize.Height / (2 * radius));
+            Point ptCenter = new Point(finalSize.Width / 2, finalSize.Height / 2);  //最终尺寸的中心点
+            double multiplier = Math.Min(finalSize.Width / (2 * radius), finalSize.Height / (2 * radius));  //缩放比 （最终尺寸 / 期望尺寸）
 
             foreach (UIElement child in InternalChildren)
             {
@@ -95,7 +96,7 @@ namespace CircleTheButtons
 
                 if (Orientation == RadialPanelOrientation.ByWidth)
                 {
-                    //将孩子放在上面
+                    //将孩子放在上边
                     child.Arrange(new Rect(ptCenter.X - multiplier * sizeLargest.Width / 2, ptCenter.Y - multiplier * outerEdgeFromCenter, multiplier * sizeLargest.Width, multiplier * sizeLargest.Height));
                 }
                 else
@@ -105,8 +106,25 @@ namespace CircleTheButtons
                 }
 
                 //旋转孩子
-                Point pt = TranslatePoint(ptCenter, child);
+                Point pt = TranslatePoint(ptCenter, child);     //将中心点转换成相对于子元素的坐标 
+
+                /*
+                 * //实际计算相对点的方式 即将子元素左上角掉作为原点（0,0）
+                if (Orientation == RadialPanelOrientation.ByWidth)
+                {
+                    double wx = ptCenter.X - (ptCenter.X - multiplier * sizeLargest.Width / 2);
+                    double hy = ptCenter.Y - (ptCenter.Y - multiplier * outerEdgeFromCenter);
+                }
+                else
+                {
+                    double wx = ptCenter.X - (ptCenter.X + multiplier * innerEdgeFromCenter);
+                    double hy = ptCenter.Y - (ptCenter.Y - multiplier * sizeLargest.Height / 2);
+                }
+                *
+                */
+
                 child.RenderTransform = new RotateTransform(angleChild, pt.X, pt.Y);
+                
                 //增加角度
                 angleChild += angleEach;
             }
@@ -133,7 +151,7 @@ namespace CircleTheButtons
                 if (Orientation == RadialPanelOrientation.ByWidth)
                     angleChild += 90;
 
-                //循环走过每个孩子，从中心绘制放射线
+                //遍历子元素，从中心绘制放射线
                 foreach (UIElement child in InternalChildren)
                 {
                     dc.DrawLine(pen, ptCenter, new Point(ptCenter.X + multiplier * radius * Math.Cos(2 * Math.PI * angleChild / 360), ptCenter.Y + multiplier * radius * Math.Sin(2 * Math.Sin(2 * Math.PI * angleChild / 360))));

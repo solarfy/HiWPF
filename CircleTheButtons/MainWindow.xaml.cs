@@ -49,15 +49,15 @@ namespace CircleTheButtons
             Random rand = new Random();
             for (int i = 0; i < 10; i++)
             {
-                Button btn1 = new Button();
-                btn1.Content = $"Button Number {i + 1}";
-                btn1.FontSize += rand.Next(10);
-                pnl1.Children.Add(btn1);
+                Button btn = new Button();
+                btn.Content = $"Button Number {i + 1}";
+                btn.FontSize += rand.Next(10);
+                pnl1.Children.Add(btn);
 
-                Button btn2 = new Button();
-                btn2.Content = $"Button Number {i + 1}";
-                btn2.FontSize += rand.Next(10);
-                pnl2.Children.Add(btn2);
+                btn = new Button();
+                btn.Content = $"Button Number {i + 1}";
+                btn.FontSize += rand.Next(10);
+                pnl2.Children.Add(btn);
             }
         }
     }
