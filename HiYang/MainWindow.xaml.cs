@@ -28,6 +28,8 @@ namespace HiYang
         {
             InitializeComponent();
 
+            string[] strDayNames = System.Globalization.DateTimeFormatInfo.InvariantInfo.DayNames;
+
             props = typeof(Brushes).GetProperties(BindingFlags.Public | BindingFlags.Static);
             //SetTitleAndBackground();            
             //this.Background = SystemColors.WindowBrush;
