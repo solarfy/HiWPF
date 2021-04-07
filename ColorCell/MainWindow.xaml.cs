@@ -12,9 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ColorCell;
 
-namespace SelectCell
+namespace SelectColor
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -24,18 +23,20 @@ namespace SelectCell
         public MainWindow()
         {
             InitializeComponent();
-            Init();
-        }
 
-        void Init()
-        {
             this.Title = "Select Color";
             this.SizeToContent = SizeToContent.WidthAndHeight;
 
-            //建立StackPanel,作为窗口的内容
+            InitGrid_1();
+            InitGrid_2();            
+        }
+
+        void InitGrid_1()
+        {            
+            //建立StackPanel
             StackPanel stack = new StackPanel();
             stack.Orientation = Orientation.Horizontal;
-            this.Content = stack;
+            this.grid1.Children.Add(stack);
 
             //建立不做事的按钮,用意是测试输入焦点的转移
             Button btn = new Button();
@@ -65,7 +66,37 @@ namespace SelectCell
         private void ColorGridOnSelectedColorChanged(object sender, EventArgs e)
         {
             ColorGrid clrgrid = sender as ColorGrid;
-            this.Background = new SolidColorBrush(clrgrid.SelectedColor);
+            this.grid1.Background = new SolidColorBrush(clrgrid.SelectedColor);
         }
+
+        void InitGrid_2()
+        {
+            StackPanel stack = new StackPanel();
+            stack.Orientation = Orientation.Horizontal;
+            this.grid2.Children.Add(stack);
+
+            Button btn = new Button();
+            btn.Content = "Do-nothing button \nto test tabbing";
+            btn.Margin = new Thickness(24);
+            btn.HorizontalAlignment = HorizontalAlignment.Center;
+            btn.VerticalAlignment = VerticalAlignment.Center;
+            stack.Children.Add(btn);
+
+            ColorGridBox clrgrid = new ColorGridBox();
+            clrgrid.Margin = new Thickness(24);
+            clrgrid.HorizontalAlignment = HorizontalAlignment.Center;
+            clrgrid.VerticalAlignment = VerticalAlignment.Center;
+            stack.Children.Add(clrgrid);
+
+            clrgrid.SetBinding(ColorGridBox.SelectedValueProperty, nameof(Background));
+            clrgrid.DataContext = this.grid2;
+
+            btn = new Button();
+            btn.Content = "Do-nothing button \nto test tabbing";
+            btn.Margin = new Thickness(24);
+            btn.HorizontalAlignment = HorizontalAlignment.Center;
+            btn.VerticalAlignment = VerticalAlignment.Center;
+            stack.Children.Add(btn);
+        }        
     }
 }

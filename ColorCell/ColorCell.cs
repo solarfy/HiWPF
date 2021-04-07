@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
-namespace ColorCell
+namespace SelectColor
 {
     class ColorCell : FrameworkElement
     {
-        static readonly Size sizeCell = new Size(40, 40);
+        static readonly Size sizeCell = new Size(42, 42);
         DrawingVisual visColor;
         Brush brush;
 

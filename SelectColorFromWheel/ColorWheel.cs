@@ -23,8 +23,8 @@ namespace SelectColorFromWheel
             this.ItemTemplate = template;
 
             FrameworkElementFactory elRectangle = new FrameworkElementFactory(typeof(Rectangle));
-            elRectangle.SetValue(Rectangle.WidthProperty, 9.0);
-            elRectangle.SetValue(Rectangle.HeightProperty, 20.0);
+            elRectangle.SetValue(Rectangle.WidthProperty, 6.0);
+            elRectangle.SetValue(Rectangle.HeightProperty, 12.0);
             elRectangle.SetValue(Rectangle.MarginProperty, new Thickness(1, 8, 1, 8));
             elRectangle.SetBinding(Rectangle.FillProperty, new Binding(""));
 

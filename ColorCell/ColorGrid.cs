@@ -9,7 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace ColorCell
+namespace SelectColor
 {
     class ColorGrid : Control
     {
