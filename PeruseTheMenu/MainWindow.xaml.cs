@@ -24,10 +24,18 @@ namespace PeruseTheMenu
         MenuItem itemChecked;
         TextBlock text;
 
+        protected MenuItem itemCut, itemCopy, itemPaste, itemDelete;
+        KeyGesture gestCut = new KeyGesture(Key.X, ModifierKeys.Control);
+        KeyGesture gestCopy = new KeyGesture(Key.C, ModifierKeys.Control);
+        KeyGesture gestPaste = new KeyGesture(Key.V, ModifierKeys.Control);
+        KeyGesture gestDelete = new KeyGesture(Key.Delete);
+
+        Dictionary<KeyGesture, MenuItem> gests = new Dictionary<KeyGesture, MenuItem>();
+
         public MainWindow()
         {
             InitializeComponent();
-            Init();
+            Init();            
         }
 
         void Init()
@@ -44,7 +52,10 @@ namespace PeruseTheMenu
             text = new TextBlock();
             text.Text = this.Title;
             text.FontSize = 32;
-            text.TextAlignment = TextAlignment.Center;
+            //text.TextAlignment = TextAlignment.Center;
+            text.VerticalAlignment = VerticalAlignment.Center;
+            text.HorizontalAlignment = HorizontalAlignment.Center;
+            text.TextWrapping = TextWrapping.Wrap;
             text.Background = SystemColors.WindowBrush;
             text.Foreground = SystemColors.WindowTextBrush;
             dock.Children.Add(text);
@@ -78,21 +89,70 @@ namespace PeruseTheMenu
 
             #endregion
 
-            #region 创建窗口菜单
+            #region 创建Edit菜单
+            MenuItem itemEdit = new MenuItem();
+            itemEdit.Header = "_Edit";
+            itemEdit.SubmenuOpened += EditOnOpened;
+            menu.Items.Add(itemEdit);
+
+            itemCut = new MenuItem();
+            itemCut.Header = "Cu_t";
+            itemCut.InputGestureText = "Ctrl+X";
+            itemCut.Click += CutOnClick;
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri("pack://application:,,/Images/cut.png"));
+            itemCut.Icon = img;
+            itemEdit.Items.Add(itemCut);
+
+            itemCopy = new MenuItem();
+            itemCopy.Header = "_Copy";
+            itemCopy.InputGestureText = "Ctrl+C";
+            itemCopy.Click += CopyOnClick;
+            img = new Image();
+            img.Source = new BitmapImage(new Uri("pack://application:,,/Images/copy.png"));
+            itemCopy.Icon = img;
+            itemEdit.Items.Add(itemCopy);
+
+            itemPaste = new MenuItem();
+            itemPaste.Header = "_Paste";
+            itemPaste.InputGestureText = "Ctrl+V";
+            itemPaste.Click += PasteOnClick;
+            img = new Image();
+            img.Source = new BitmapImage(new Uri("pack://application:,,/Images/paste.png"));
+            itemPaste.Icon = img;
+            itemEdit.Items.Add(itemPaste);
+
+            itemDelete = new MenuItem();
+            itemDelete.Header = "_Delete";
+            itemDelete.InputGestureText = "Delete";
+            itemDelete.Click += DeleteOnClick;
+            img = new Image();
+            img.Source = new BitmapImage(new Uri("pack://application:,,/Images/delete.png"));
+            itemDelete.Icon = img;
+            itemEdit.Items.Add(itemDelete);
+
+            //添加手势键
+            gests.Add(gestCut, itemCut);
+            gests.Add(gestCopy, itemCopy);
+            gests.Add(gestPaste, itemPaste);
+            gests.Add(gestDelete, itemDelete);
+            #endregion
+
+            #region 创建Window菜单
 
             MenuItem itemWindow = new MenuItem();
-            itemWindow.Header = "_Window";
+            itemWindow.Header = "Window";
             menu.Items.Add(itemWindow);
 
             MenuItem itemTaskbar = new MenuItem();
-            itemTaskbar.Header = "_Show in Taskbar";
+            itemTaskbar.Header = "Show in Taskbar";
             itemTaskbar.IsCheckable = true;
             itemTaskbar.IsChecked = this.ShowInTaskbar;
             itemTaskbar.Click += TaskbarOnClick;
             itemWindow.Items.Add(itemTaskbar);
 
             MenuItem itemSize = new MenuItem();
-            itemSize.Header = "Size to _Content";
+            itemSize.Header = "Size to Content";
             itemSize.IsCheckable = true;
             itemSize.IsChecked = this.SizeToContent == SizeToContent.WidthAndHeight;
             itemSize.Checked += SizeOnCheck;
@@ -100,14 +160,14 @@ namespace PeruseTheMenu
             itemWindow.Items.Add(itemSize);
 
             MenuItem itemResize = new MenuItem();
-            itemResize.Header = "_Resizable";
+            itemResize.Header = "Resizable";
             itemResize.IsCheckable = true;
             itemResize.IsChecked = this.ResizeMode == ResizeMode.CanResize;
             itemResize.Click += ResizeOnClick;
             itemWindow.Items.Add(itemResize);
 
             MenuItem itemTopmost = new MenuItem();
-            itemTopmost.Header = "_Topmost";
+            itemTopmost.Header = "Topmost";
             itemTopmost.IsCheckable = true;
             itemTopmost.IsChecked = this.Topmost;
             itemTopmost.Checked += TopmostOnCheck;
@@ -120,7 +180,7 @@ namespace PeruseTheMenu
 
             #endregion
 
-            #region 创建窗口样式菜单
+            #region 创建Style菜单
 
             MenuItem itemStyle = new MenuItem();
             itemStyle.Header = "Style";
@@ -133,7 +193,7 @@ namespace PeruseTheMenu
 
             #endregion
 
-            #region 创建文本颜色菜单
+            #region 创建Color菜单
             MenuItem itemColor = new MenuItem();
             itemColor = new MenuItem();
             itemColor.Header = "Color";
@@ -155,7 +215,7 @@ namespace PeruseTheMenu
 
             #endregion
 
-            #region 创建另一种文本颜色菜单
+            #region 创建ColorSelector菜单
             itemColor = new MenuItem();
             itemColor.Header = "ColorSelector";
             menu.Items.Add(itemColor);
@@ -195,6 +255,78 @@ namespace PeruseTheMenu
         private void ExitOnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        #endregion
+
+        #region Edit
+        private void EditOnOpened(object sender, RoutedEventArgs args)
+        {
+            itemCut.IsEnabled = itemCopy.IsEnabled = itemDelete.IsEnabled = !string.IsNullOrEmpty(text.Text);
+            itemPaste.IsEnabled = Clipboard.ContainsText();
+        }
+
+        protected void CutOnClick(object sender, RoutedEventArgs args)
+        {
+            CopyOnClick(sender, args);
+            DeleteOnClick(sender, args);
+        }
+
+        protected void CopyOnClick(object sender, RoutedEventArgs args)
+        {
+            if (text.Text != null && text.Text.Length > 0)
+            {
+                Clipboard.SetText(text.Text);   //将文字设定给剪贴板
+            }
+        }
+
+        protected void PasteOnClick(object sender, RoutedEventArgs args)
+        {
+            if (Clipboard.ContainsText())
+                text.Text += Clipboard.GetText();    //获取剪贴板中的文字
+        }
+
+        protected void DeleteOnClick(object sender, RoutedEventArgs args)
+        {
+            text.Text = null;
+        }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            base.OnPreviewKeyDown(e);
+
+/*
+            e.Handled = true;   //先将其设置为true，如果此键不匹配定义的任何一个手势，再将其设为false
+
+            if (gestCut.Matches(null, e))
+            {
+                CutOnClick(this, e);
+            }
+            else if (gestCopy.Matches(null, e))
+            {
+                CopyOnClick(this, e);
+            }
+            else if (gestPaste.Matches(null, e))
+            {
+                PasteOnClick(this, e);
+            }
+            else if (gestDelete.Matches(null, e))
+            {
+                DeleteOnClick(this, e);
+            }
+            else
+            {
+                e.Handled = false;
+            }
+*/
+            foreach(KeyGesture gest in gests.Keys)
+            {
+                if (gest.Matches(null, e))
+                {
+                    gests[gest].RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent, gests[gest]));
+                    e.Handled = true;
+                }
+            }
         }
 
         #endregion
