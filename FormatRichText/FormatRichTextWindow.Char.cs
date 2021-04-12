@@ -38,8 +38,10 @@ namespace FormatRichText
             comboFamily.ToolTip = tip;
 
             comboSize = new ComboBox();
-            comboSize.Width = 48;
+            comboSize.Width = 72;
             comboSize.IsEditable = true;
+            comboSize.StaysOpenOnEdit = true;            
+            comboSize.IsTextSearchEnabled = false;      //关闭文本搜索，防止在输入文本时自动匹配触发SelectionChanged事件
             comboSize.Text = (0.75 * this.txtbox.FontSize).ToString();
             comboSize.ItemsSource = new double[] { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
             comboSize.SelectionChanged += SizeComboOnSelection;
@@ -182,8 +184,8 @@ namespace FormatRichText
 
         string strOriginal;
         void SizeComboOnGotFocus(object sender, KeyboardFocusChangedEventArgs args)
-        {
-            strOriginal = (sender as ComboBox).Text;
+        {            
+            strOriginal = (sender as ComboBox).Text;            
         }
         void SizeComboOnLostFocus(object sender, KeyboardFocusChangedEventArgs args)
         {
@@ -198,6 +200,7 @@ namespace FormatRichText
                 (sender as ComboBox).Text = strOriginal;
             }
         }
+
         void SizeComboOnKeyDowm(object sender, KeyEventArgs args)
         {
             if (args.Key == Key.Escape)
@@ -216,11 +219,15 @@ namespace FormatRichText
         {
             ComboBox combo = args.Source as ComboBox;
 
-            if (combo.SelectedIndex != -1)
+            /*  设置 combo.IsTextSearchEnabled = true;
+             *  当输入的combo.Text与combo.ItemSourec中的某个字符匹配时，此时combo.SelectedIndex != -1                      
+             */
+
+            if (combo.SelectedIndex != -1)      
             {
                 double size = (double)combo.SelectedValue;
                 this.txtbox.Selection.ApplyPropertyValue(FlowDocument.FontSizeProperty, size / 0.75);
-                this.txtbox.Focus();
+                //this.txtbox.Focus();      //此处不需进行焦点切换，使其能够连续的进行选择操作
             }
         }
 

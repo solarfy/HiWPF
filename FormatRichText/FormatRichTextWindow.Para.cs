@@ -48,7 +48,7 @@ namespace FormatRichText
                 poly.Stroke = SystemColors.WindowTextBrush;
                 poly.StrokeThickness = 1;
 
-                if (i % 1 == 0)
+                if ((i & 1) == 0)   //偶数
                 {
                     poly.Points = new PointCollection(new Point[] 
                     {

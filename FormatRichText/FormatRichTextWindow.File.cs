@@ -17,7 +17,7 @@ namespace FormatRichText
             DataFormats.Xaml, DataFormats.XamlPackage, DataFormats.Rtf, DataFormats.Text, DataFormats.Text
         };
 
-        string strFilter = "XAML Document Files (*.xaml)|*.xaml|" + "XAML Packages Files (*.zip)|*.zip|" + "Rich Text Format Files (*.rtf)|*.rtf|" + "All files (*.*)|*.*";
+        string strFilter = "XAML Document Files (*.xaml)|*.xaml|" + "XAML Packages Files (*.zip)|*.zip|" + "Rich Text Format Files (*.rtf)|*.rtf|" + "Text Files (*.txt)|*.txt|" + "All files (*.*)|*.*";
 
         void AddFileToolBar(ToolBarTray tray, int band, int index)
         {
@@ -66,7 +66,7 @@ namespace FormatRichText
 
             if ((bool)dlg.ShowDialog(this))
             {
-                FlowDocument flow = new FlowDocument();
+                FlowDocument flow = this.txtbox.Document;
                 TextRange range = new TextRange(flow.ContentStart, flow.ContentEnd);
                 FileStream strm = null;
 
@@ -93,7 +93,7 @@ namespace FormatRichText
 
             if ((bool)dlg.ShowDialog(this))
             {
-                FlowDocument flow = txtbox.Document;
+                FlowDocument flow = this.txtbox.Document;
                 TextRange range = new TextRange(flow.ContentStart, flow.ContentEnd);
                 FileStream strm = null;
 
