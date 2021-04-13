@@ -119,7 +119,7 @@ namespace FormatRichText
             tip.Content = "Foreground Color";
             item.ToolTip = tip;
 
-            this.txtbox.SelectionChanged += TextBoxOnSelectionChanged;
+            this.txtbox.SelectionChanged += TextBoxOnSelectionChanged;      //选择文字时，更新工具栏信息
         }
 
         void TextBoxOnSelectionChanged(object sender, RoutedEventArgs args)
@@ -134,7 +134,7 @@ namespace FormatRichText
                 comboFamily.SelectedIndex = -1;
             }
 
-            obj = this.txtbox.Selection.GetPropertyValue(FlowDocument.FontFamilyProperty);
+            obj = this.txtbox.Selection.GetPropertyValue(FlowDocument.FontSizeProperty);
             if (obj is double)
             {
                 comboSize.Text = (0.75 * (double)obj).ToString();
