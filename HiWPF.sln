@@ -95,11 +95,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedievalButton", "HiWPF\Med
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseFollow", "HiWPF\MouseFollow\MouseFollow.csproj", "{9A21FC05-086F-4380-8863-47F45B01621F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBrush", "HiWPF\TheBrush\MyBrush.csproj", "{B04E00BC-A97A-4121-8A90-3DA13C29416C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBrush", "HiWPF\TheBrush\TheBrush.csproj", "{B04E00BC-A97A-4121-8A90-3DA13C29416C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyButton", "HiWPF\TheButton\MyButton.csproj", "{9474DDDA-4ECB-4E0F-AA4D-A5552023069D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheButton", "HiWPF\TheButton\TheButton.csproj", "{9474DDDA-4ECB-4E0F-AA4D-A5552023069D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyContent", "HiWPF\TheContent\MyContent.csproj", "{01EFE467-CFD7-43D0-8333-CDF58444EDD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheContent", "HiWPF\TheContent\TheContent.csproj", "{01EFE467-CFD7-43D0-8333-CDF58444EDD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorScroll", "HiWPF\ColorScroll\ColorScroll.csproj", "{9C8C7FA0-27D5-4C3C-A6A2-F22C38A14B46}"
 EndProject

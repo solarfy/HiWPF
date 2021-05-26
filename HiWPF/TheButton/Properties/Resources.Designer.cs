@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace MyButton.Properties
+namespace TheButton.Properties
 {
     /// <summary>
     ///   强类型资源类，用于查找本地化字符串等。
