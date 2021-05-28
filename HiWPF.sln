@@ -109,6 +109,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWPF", "HiWPF\FirstWPF\FirstWPF.csproj", "{F4233D38-67DC-49AD-AA5B-F7C8FE1225EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotepadClone", "NotedpadClone\NotepadClone.csproj", "{794CE1F1-2C87-4134-9F92-714CBB24C6BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -271,6 +273,10 @@ Global
 		{F4233D38-67DC-49AD-AA5B-F7C8FE1225EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4233D38-67DC-49AD-AA5B-F7C8FE1225EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4233D38-67DC-49AD-AA5B-F7C8FE1225EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794CE1F1-2C87-4134-9F92-714CBB24C6BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794CE1F1-2C87-4134-9F92-714CBB24C6BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794CE1F1-2C87-4134-9F92-714CBB24C6BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794CE1F1-2C87-4134-9F92-714CBB24C6BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -315,6 +321,7 @@ Global
 		{9C8C7FA0-27D5-4C3C-A6A2-F22C38A14B46} = {4EC68576-348E-47BF-B52E-BBFFD438B85E}
 		{A0DC9BF7-F33D-4484-9740-B3DDF4EA24E4} = {A364474A-4EBA-4310-80E8-3029CD0A88F0}
 		{F4233D38-67DC-49AD-AA5B-F7C8FE1225EB} = {4EC68576-348E-47BF-B52E-BBFFD438B85E}
+		{794CE1F1-2C87-4134-9F92-714CBB24C6BC} = {4EC68576-348E-47BF-B52E-BBFFD438B85E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C7A6E06-119B-446D-99C0-CC5E342A8BD5}

@@ -43,7 +43,7 @@ namespace TheButton
 
             Uri uri = new Uri("pack://application:,,/dog.jpg");
             BitmapImage bitmap = new BitmapImage(uri);
-            Image img = new Image() { Source = bitmap, Height = 100, Width = 80};
+            Image img = new Image() { Source = bitmap, Height = 100, Width = 80 };
             this.label.ToolTip = img;
 
             this.textBox.SelectionStart = this.textBox.Text.Length; //将光标置于文字之后
