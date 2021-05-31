@@ -5,7 +5,7 @@ using System;
 
 namespace NotepadClone
 {
-    public partial class NotepadClone : Window
+    public partial class NotepadClone 
     {
         void AddEditMenu(Menu menu)
         {

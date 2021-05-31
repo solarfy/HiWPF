@@ -53,11 +53,19 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutDialog.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="FindDialog.cs" />
     <Compile Include="FindReplaceDialog.cs" />
     <Compile Include="NotepadClone.cs" />
     <Compile Include="NotepadClone.Edit.cs" />
     <Compile Include="NotepadClone.File.cs" />
+    <Compile Include="NotepadClone.Find.cs" />
+    <Compile Include="NotepadClone.Format.cs" />
+    <Compile Include="NotepadClone.Help.cs" />
+    <Compile Include="NotepadClone.View.cs" />
+    <Compile Include="ReplaceDialog.cs" />
+    <Compile Include="WordWrapMenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NotepadClone.Print.cs" />
@@ -89,7 +97,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Print\PrintWithMargins\PrintWithMargins.csproj">
+    <ProjectReference Include="..\..\Print\ChooseFont\ChooseFont.csproj">
+      <Project>{346146da-0d06-4202-b45f-7e2751984056}</Project>
+      <Name>ChooseFont</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Print\PrintWithMargins\PrintWithMargins.csproj">
       <Project>{51f1bb0a-66ed-47be-8b81-89c0bef2a754}</Project>
       <Name>PrintWithMargins</Name>
     </ProjectReference>

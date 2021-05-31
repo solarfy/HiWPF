@@ -109,7 +109,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWPF", "HiWPF\FirstWPF\FirstWPF.csproj", "{F4233D38-67DC-49AD-AA5B-F7C8FE1225EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotepadClone", "NotedpadClone\NotepadClone.csproj", "{794CE1F1-2C87-4134-9F92-714CBB24C6BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotepadClone", "HiWPF\NotedpadClone\NotepadClone.csproj", "{794CE1F1-2C87-4134-9F92-714CBB24C6BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

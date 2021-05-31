@@ -56,7 +56,7 @@ namespace NotepadClone
 
                 PlainTextDocumentPaginator paginator = new PlainTextDocumentPaginator();
 
-                paginator.PrintTicker = prntkt;
+                paginator.PrintTicket = prntkt;
                 paginator.Text = txtbox.Text;
                 paginator.Header = strLoadedFile;
                 paginator.Typeface = new Typeface(txtbox.FontFamily, txtbox.FontStyle, txtbox.FontWeight, txtbox.FontStretch);

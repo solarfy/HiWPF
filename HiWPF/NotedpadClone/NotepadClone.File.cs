@@ -140,7 +140,9 @@ namespace NotepadClone
         {
             try
             {
-                txtbox.Text = File.ReadAllText(strFileName);
+                //txtbox.Text = File.ReadAllText(strFileName);
+                //txtbox.Text = File.ReadAllText(strFileName, System.Text.Encoding.UTF8);
+                txtbox.Text = File.ReadAllText(strFileName, System.Text.Encoding.GetEncoding("gb2312"));
             }
             catch (Exception exc)
             {
