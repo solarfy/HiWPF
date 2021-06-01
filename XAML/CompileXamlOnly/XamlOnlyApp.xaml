@@ -1,0 +1,6 @@
+﻿<!--将Application文件生成操作设置为ApplicationDefinition，否则无法运行, 注：某些情况下VS可能会改变生成操作的设定（例如更文件名）-->    
+<!--工程目录下obj//Debug中的XamlOnlyApp.g.cs文件中会生成Main方法-->
+<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             StartupUri="XamlOnlyWindow.xaml">
+    
+</Application>

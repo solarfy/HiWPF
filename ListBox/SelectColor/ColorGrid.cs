@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace SelectColor
 {
-    class ColorGrid : Control
+    public class ColorGrid : Control
     {
         //行于列的个数
         const int yNum = 5;

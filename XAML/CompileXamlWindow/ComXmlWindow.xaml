@@ -1,0 +1,24 @@
+﻿<!--xaml 代表XAML；presentation 代表WPF-->
+<!--x:Class 只能出现在XAML文件中的root元素中，只允许被编译成工程一部分的XAML使用，它不可以出现在松散的XAML或运行时加载的XAML中-->
+<!--将此文件生成操作设置成Page，则该文件就会被编译-->
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CompileXamlWindow.ComXmlWindow"
+        Title="Compile Xaml Window" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize"
+        xmlns:src="clr-namespace:SelectColor;assembly=SelectColor">
+        <!--添加项目ListBox->SelectColor 需加上assembly 引用外部控件-->
+
+
+    <StackPanel>
+        <Button HorizontalAlignment="Center" Margin="24" Click="ButtonOnClick">
+            Click the Button
+        </Button>
+
+        <Ellipse x:Name="elips" Width="200" Height="100" Margin="24" Stroke="Black"/>
+
+        <ListBox x:Name="lstbox" Width="150" Height="150" Margin="24" SelectionChanged="ListBoxOnSelection"/>
+
+        <src:ColorGrid SelectedColorChanged="ColorGridOnColorChanged"/>
+    </StackPanel>
+        
+</Window>
