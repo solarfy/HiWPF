@@ -1,0 +1,47 @@
+﻿<Window x:Class="FivePointedStar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FivePointedStar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <!--in（IN） 英寸；pt（即point）印刷行业常用单位，等于1/72英寸；px（即pixel）像素，屏幕上显示数据的基础点，默认使用该单位；cm（即公制 厘米） -->
+    <Grid Width="450pt" Height="450px">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--五角星 （一个繁杂的写法）-->
+        <Polygon VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="Blue" StrokeThickness="5" Points="144 48, 200 222, 53 114, 235 114, 88 222">
+            <Polygon.Fill>
+                <SolidColorBrush>
+                    <SolidColorBrush.Color>
+                        <!--xmlns:sys="clr-namespace:System;assembly=mscorlib"-->
+                        <!--System命名空间的类与结构来自于外部组件，需要加入assembly组件名称-->
+                        <Color xmlns:sys="clr-namespace:System;assembly=mscorlib"  A="155" R="200" G="58">
+                            <Color.B>
+                                <sys:Byte>
+                                    168
+                                </sys:Byte>
+                            </Color.B>
+                        </Color>
+                    </SolidColorBrush.Color>
+                </SolidColorBrush>
+            </Polygon.Fill>
+        </Polygon>
+
+        <!--一个渐变五角星-->
+        <Polygon Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="Green" StrokeThickness="5" Points="144 48, 200 222, 53 114, 235 114, 88 222">
+            <Polygon.Fill>
+                <LinearGradientBrush StartPoint="0 0" EndPoint="1 0">
+                    <GradientStop Offset="0" Color="Red"/>
+                    <GradientStop Offset="0.5" Color="Green"/>
+                    <GradientStop Offset="1" Color="Blue"/>
+                </LinearGradientBrush>
+            </Polygon.Fill>
+        </Polygon>
+    </Grid>
+</Window>
