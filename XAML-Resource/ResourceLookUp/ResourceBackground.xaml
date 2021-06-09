@@ -1,0 +1,12 @@
+﻿<!--将本文件生成操作设置为Page或Resource人-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+    <RadialGradientBrush x:Key="backgroundBrush">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="Pink" Offset="0"/>
+            <GradientStop Color="Aqua" Offset="1"/>
+        </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
+       
+</ResourceDictionary>

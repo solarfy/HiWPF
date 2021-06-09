@@ -1,0 +1,72 @@
+﻿<Window x:Class="GradientBrusheResource.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GradientBrusheResource"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="800">
+    <StackPanel>
+        <!--x:Static使用非WPF类中的字段，需先对类所在的CLR命名空间做XML命名空间的声明 （本例中的local） -->
+        <TextBlock Margin="{StaticResource thicknessMargin}" Foreground="{StaticResource brushGradient}"
+                   FontSize="{x:Static local:MainWindow.RDFontSize}">
+            Gradient text
+        </TextBlock>
+
+        <!--x:Static的另一种写法-->
+        <TextBlock Margin="{StaticResource thicknessMargin}" Foreground="{StaticResource brushGradient}">
+            <TextBlock.FontSize>
+                <x:Static Member="local:MainWindow.RDFontSize"/>
+            </TextBlock.FontSize>
+            of black, green, and gold
+        </TextBlock>
+
+        <TextBlock Margin="{StaticResource thicknessMargin}" Foreground="{StaticResource brushGradient}">
+            Makes an app pretty.
+        </TextBlock>
+
+        <TextBlock FontSize="20">
+            <!--操作系统版本-->
+            <Label Content="Operating System Version: "/>
+            <Label Content="{x:Static sys:Environment.OSVersion}"/>
+            <LineBreak/>            
+            <!--.NET 版本-->
+            <Label Content=".NET Version: "/>
+            <Label Content="{x:Static sys:Environment.Version}"/>
+            <LineBreak/>
+            <!--机器名称-->
+            <Label Content="Machine Name: "/>
+            <Label Content="{x:Static sys:Environment.MachineName}"/>
+            <LineBreak/>
+            <!--用户名称-->
+            <Label Content="User Name: "/>
+            <Label Content="{x:Static sys:Environment.UserName}"/>
+            <LineBreak/>
+            <!--用户域名-->
+            <Label Content="User Domain Name: "/>
+            <Label Content="{x:Static sys:Environment.UserDomainName}"/>
+            <LineBreak/>
+            <!--系统目录-->
+            <Label Content="System Directory: "/>
+            <Label Content="{x:Static sys:Environment.SystemDirectory}"/>
+            <LineBreak/>
+            <!--当前目录-->
+            <Label Content="Current Directory: "/>
+            <Label Content="{x:Static sys:Environment.CurrentDirectory}"/>
+            <LineBreak/>
+            <!--命令行-->
+            <Label Content="Command Line: "/>
+            <Label Content="{x:Static sys:Environment.CommandLine}"/>
+            <LineBreak/>
+            <!--当期时间-->
+            <Label Content="DateTime"/>
+            <Label Content="{x:Static sys:DateTime.Now}" Foreground="{x:Static SystemColors.ActiveCaptionBrush}"/>
+            <!--注意两种写法 StaticResource引用的是资源key，而key又是某类的静态字段-->
+            <Label Content="{x:Static sys:DateTime.Now}" Foreground="{StaticResource {x:Static SystemColors.ActiveCaptionBrushKey}}"/>
+            <!--StaticResource key被用来存取对象一次，然后对象会被保留-->
+            <!--DynamicResource key会被保留，对象需要的时候就会被调用（一般多用于系统的资源）-->
+            <Label Content="{x:Static sys:DateTime.Now}" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"/>
+        </TextBlock>
+    </StackPanel>
+</Window>

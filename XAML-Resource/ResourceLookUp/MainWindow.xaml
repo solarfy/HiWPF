@@ -1,0 +1,56 @@
+﻿<Window x:Class="ResourceLookUp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:ResourceLookUp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <!--如果只有一个资源词典可以直接从ResourceDictionary中引用，不需要使用MergedDictionaries-->
+            <!--如果合并的资源词典中有相同的key，早出现的key会被后出现的key替代-->
+            <ResourceDictionary.MergedDictionaries>
+                <!--引用外部的资源文件-->
+                <ResourceDictionary Source="ResourceBackground.xaml"/>
+                <ResourceDictionary Source="ResourceForeground.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <sys:Double x:Key="fontSize">
+                24
+            </sys:Double>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--显示大括号，在大括号之前，插入一组空的大括号，作为escape sequence-->
+        <TextBlock FontSize="{StaticResource fontSize}" Text="{}{just a litte text in here}" Background="{StaticResource backgroundBrush}"/>
+
+        <!--StaticResource的另一种写法-->
+        <TextBlock Grid.Row="1" Text="{}{just a litte text in here}" Foreground="{StaticResource foregroundBrush}">
+            <TextBlock.FontSize>
+                <StaticResource ResourceKey="fontSize"/>
+            </TextBlock.FontSize>
+        </TextBlock>
+
+        <Grid Grid.Row="2">
+            <Grid.Resources>
+                <!--同名的Key可以出现在另一个Resource collection内，当一个资源被定位时，会先从元素所引用的资源集合中查找，然后继续沿着树状结构向上找，直到找到这个key为止-->
+                <sys:Double x:Key="fontSize">
+                    32
+                </sys:Double>
+            </Grid.Resources>
+            
+            <!--引用的同名资源-->
+            <TextBlock FontSize="{StaticResource fontSize}" Text="{}{just a litte text in here}"/>
+        </Grid>
+    </Grid>
+</Window>
