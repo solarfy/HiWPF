@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{06325ED2-E593-4DE6-B33A-7278341DDE2A}</ProjectGuid>
+    <ProjectGuid>{AEE6645A-1D62-47A2-A6E2-108F562EDDD5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ListColorNames</RootNamespace>
-    <AssemblyName>ListColorNames</AssemblyName>
+    <RootNamespace>YellowPad</RootNamespace>
+    <AssemblyName>YellowPad</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,7 +55,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Resource Include="Images\Signature.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="StylusToolDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YellowPadAboutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YellowPadHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YellowPadWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -64,16 +79,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ColorListBox.cs" />
-    <Compile Include="ColorListBoxItem.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="EraserToolDialog.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+    <Compile Include="StylusToolDialog.xaml.cs">
+      <DependentUpon>StylusToolDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YellowPadAboutDialog.xaml.cs">
+      <DependentUpon>YellowPadAboutDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YellowPadHelp.xaml.cs">
+      <DependentUpon>YellowPadHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YellowPadWindow.Edit.cs" />
+    <Compile Include="YellowPadWindow.File.cs" />
+    <Compile Include="YellowPadWindow.Help.cs" />
+    <Compile Include="YellowPadWindow.Mode.cs" />
+    <Compile Include="YellowPadWindow.Tools.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+    <Compile Include="YellowPadWindow.xaml.cs">
+      <DependentUpon>YellowPadWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NamedBrush.cs" />
-    <Compile Include="NamedColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,6 +128,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ListBox\ListColorNames\ListColorNames.csproj">
+      <Project>{06325ed2-e593-4de6-b33a-7278341dde2a}</Project>
+      <Name>ListColorNames</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\book.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

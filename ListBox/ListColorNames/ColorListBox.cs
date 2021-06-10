@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace ListColorNames
 {
-    class ColorListBox : ListBox
+    public class ColorListBox : ListBox
     {
         public ColorListBox()
         {
