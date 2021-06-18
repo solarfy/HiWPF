@@ -1,0 +1,31 @@
+﻿<Page x:Class="BookReader.Pbfmnz"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookReader"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="白发魔女传">
+
+    <StackPanel TextBlock.FontSize="10pt">
+        <TextBlock Margin="12 12 12 6">
+            <!--使用‘#’导航到指定Name内的文字-->
+            <Hyperlink NavigateUri="Pbfmnz_lns.xaml#english" TargetName="frameChapter">
+                练霓裳
+            </Hyperlink>
+        </TextBlock>
+
+        <TextBlock Margin="12 12 12 6">
+            <Hyperlink NavigateUri="Pbfmnz_zyh.xaml" TargetName="frameChapter">
+                卓一航
+            </Hyperlink>
+        </TextBlock>
+
+        <TextBlock Margin="12 12 12 6">
+            <Hyperlink NavigateUri="Pbfmnz_ymk.xaml" TargetName="frameChapter">
+                岳鸣珂
+            </Hyperlink>
+        </TextBlock>
+    </StackPanel>
+</Page>

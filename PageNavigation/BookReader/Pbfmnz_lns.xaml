@@ -1,0 +1,40 @@
+﻿<Page x:Class="BookReader.Pbfmnz_lns"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookReader"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="白发魔女传：练霓裳">
+
+    <FlowDocumentReader>
+        <FlowDocument>
+            <Paragraph TextAlignment="Left" TextIndent="24">
+                练霓裳容色绝世，嫉恶如仇，某次向一告老还乡的朝廷大官卓仲廉行劫，
+                与其孙卓一航不打不相识，后更陷入情网。卓一航是武当弟子，师叔白石道人认为他不应与绿林女子相恋，
+                遂横加干预。练霓裳因此大闹武当。终因卓一航性情懦弱，意志不坚而以悲剧告终。练霓裳为此一夜白头，
+                被人称为白发魔女。                
+            </Paragraph>
+
+            <Paragraph>
+                昨夜群狼饿嗥，余仗剑出洞，忽闻女孩哭声，驱散群狼，在狼窟中，发现女孩，身驱赤裸，约三四岁，见余来惊恐万状，跳跃如飞，发音咿呀，不可辨识，
+                噫，此女孩乃群狼所哺，岂非异事。余穷搜狼窟，见有衣带，已将腐烂，细辨之，字迹模糊可读，始知此女姓练，父为穷儒，逃荒至此，母难产死，其父弃于华山脚下，原冀山中寺僧，发现抚养，不意乃为母狼挈去。意得不死，而又与余遇合，冥冥中岂非有天意乎？
+                因携此女回洞，决收其为徒，仗其先天禀赋，培其根元，授其武功，他日或将为我派放一异彩也。」
+               「练女今日白毛尽脱，余下山市布，为其裁衣，伊初学人言，呼余『妈妈』，心中有感，不禁泪下。此女自脱离狼窟之后，野性渐除，不再咬人啮物矣。余为之取名曰霓裳。记余为彼初缝彩衣也。」
+                ——引自凌慕华日记
+            </Paragraph>
+            
+            <Paragraph x:Name="english" TextAlignment="Left" TextIndent="24">
+                Lian nishang looks peerless and resents evil like a grudge. He once robbed Zhuo Zhonglian, 
+                a senior official of the imperial court who had returned home,
+                He didn't know sun Zhuo Yihang, and later fell in love. Zhuo Yihang is a Wudang disciple. 
+                His martial uncle, Taoist Baishi, thinks that he should not fall in love with the green forest women,
+                So we intervened. Lian nishang made a big stir in Wudang. 
+                Zhuo Yihang ended up in tragedy because of his weak temperament and weak will. 
+                I've been practicing neon clothes all night,
+                Known as the white haired witch.
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentReader>
+</Page>

@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace ManuallyPopulateTreeView
 {
-    class DirectoryTreeViewItem : ImagedTreeViewItem
+    public class DirectoryTreeViewItem : ImagedTreeViewItem
     {
         DirectoryInfo dir;
 
@@ -23,9 +23,11 @@ namespace ManuallyPopulateTreeView
             this.dir = dir;
             this.Text = dir.Name;
 
-            this.SelectedImage = new BitmapImage(new Uri("pack://application:,,/Images/open_folder.png"));
-            this.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/close_folder.png"));
+            //this.SelectedImage = new BitmapImage(new Uri("pack://application:,,/Images/open_folder.png"));
+            //this.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/close_folder.png"));
 
+            this.SelectedImage = new BitmapImage(new Uri("pack://application:,,,/ManuallyPopulateTreeView;component/Images/open_folder.png"));
+            this.UnselectedImage = new BitmapImage(new Uri("pack://application:,,,/ManuallyPopulateTreeView;component/Images/close_folder.png"));
 
         }
 

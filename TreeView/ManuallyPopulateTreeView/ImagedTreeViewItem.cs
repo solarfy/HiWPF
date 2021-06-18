@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace ManuallyPopulateTreeView
 {
-    class ImagedTreeViewItem : TreeViewItem
+    public class ImagedTreeViewItem : TreeViewItem
     {
         TextBlock text;
         Image img;

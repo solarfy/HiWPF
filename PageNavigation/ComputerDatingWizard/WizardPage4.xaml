@@ -1,0 +1,56 @@
+﻿<Page x:Class="ComputerDatingWizard.WizardPage4"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ComputerDatingWizard"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WizardPage4">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0">
+            <LineBreak/>
+            <Run Text="Name: "/>
+            <Run x:Name="runName"/>
+            <LineBreak/>
+            <Run Text="Home: "/>
+            <Run x:Name="runHome"/>
+            <LineBreak/>
+            <Run Text="Gender: "/>
+            <Run x:Name="runGender"/>
+            <LineBreak/>
+            <Run Text="Favorite OS: "/>
+            <Run x:Name="runOS"/>
+            <LineBreak/>
+            <Run Text="Favourite Directory: "/>
+            <Run x:Name="runDirectory"/>
+            <LineBreak/>
+            <Run Text="Mother's Maident Name: "/>
+            <Run x:Name="runMomsMaidenName"/>
+            <LineBreak/>
+            <Run Text="Favorite Pet: "/>
+            <Run x:Name="runPet"/>
+            <LineBreak/>
+            <Run Text="Income Level: "/>
+            <Run x:Name="runIncome"/>
+        </TextBlock>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Click="PreviousButtonOnClick" MinWidth="72" Margin="6" Content="&lt; Previous"/>
+            <Button Grid.Column="2" Click="SubmitButtonOnClick" MinWidth="72" Margin="6" Content="Submit !"/>
+        </Grid>
+    </Grid>
+</Page>

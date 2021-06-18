@@ -1,28 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Navigation;
 
 namespace YellowPad
 {
     /// <summary>
     /// YellowPadHelp.xaml 的交互逻辑
     /// </summary>
-    public partial class YellowPadHelp : Window
+    public partial class YellowPadHelp : NavigationWindow
     {
-        //TODO: YellowPadHelp
         public YellowPadHelp()
         {
             InitializeComponent();
+
+            (this.tree.Items[0] as TreeViewItem).IsSelected = true;
+            this.tree.Focus();
+        }
+
+        private void HelpOnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            TreeViewItem item = e.NewValue as TreeViewItem;
+
+            if (item.Tag == null)
+                return;
+
+            //Uri uri = new Uri(item.Tag as string, UriKind.Relative);
+            Uri uri = new Uri("Help/EraserToolDialog.xaml", UriKind.Relative);  //其他文件与此文件类似
+            this.frame.Navigate(uri);
         }
     }
 }

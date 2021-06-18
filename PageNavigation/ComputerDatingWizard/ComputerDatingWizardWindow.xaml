@@ -1,0 +1,21 @@
+﻿<Window x:Class="ComputerDatingWizard.ComputerDatingWizardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerDatingWizard"
+        mc:Ignorable="d"
+        Title="Computer Dating Wizard" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Margin="12" FontSize="16" FontStyle="Italic" HorizontalAlignment="Center">
+            Computer Dating Wizard
+        </TextBlock>
+
+        <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden" Padding="6"/>
+    </Grid>
+</Window>

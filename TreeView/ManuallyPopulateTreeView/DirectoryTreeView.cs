@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace ManuallyPopulateTreeView
 {
-    class DirectoryTreeView : TreeView
+    public class DirectoryTreeView : TreeView
     {
         public DirectoryTreeView()
         {
@@ -41,15 +41,18 @@ namespace ManuallyPopulateTreeView
 
                 if (chDrive == 'A' || chDrive == 'B')       //软盘驱动器
                 {
-                    item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/floppy_disk.png"));
+                    //item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/floppy_disk.png"));
+                    item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,,/ManuallyPopulateTreeView;component/Images/floppy_disk.png"));
                 }
                 else if (drive.DriveType == DriveType.CDRom)
                 {
-                    item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/cd_drive.png"));
+                    //item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/cd_drive.png"));
+                    item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,,/ManuallyPopulateTreeView;component/Images/cd_drive.png"));
                 }
                 else
                 {
-                    item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/drive.png"));
+                    //item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,/Images/drive.png"));
+                    item.SelectedImage = item.UnselectedImage = new BitmapImage(new Uri("pack://application:,,,/ManuallyPopulateTreeView;component/Images/drive.png"));
                 }
 
                 this.Items.Add(item);

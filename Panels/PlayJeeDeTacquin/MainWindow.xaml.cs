@@ -248,69 +248,68 @@ namespace PlayJeeDeTacquin
             }
 
             return true;
+        }        
+    }
+
+    public class Tile : Canvas
+    {
+        const int SIZE = 64;
+        const int BORD = 6;
+        TextBlock txtblk;
+
+        public Tile()
+        {
+            this.Width = SIZE;
+            this.Height = SIZE;
+
+            //左上的影子边界
+            Polygon poly = new Polygon();
+            poly.Points = new PointCollection(new Point[]
+            {
+                new Point(0, 0), new Point(SIZE, 0), new Point(SIZE-BORD, BORD), new Point(BORD, BORD), new Point(BORD, SIZE-BORD), new Point(0, SIZE)
+            });
+            poly.Fill = SystemColors.ControlLightBrush;
+            this.Children.Add(poly);
+
+            //右下的影子边界
+            poly = new Polygon();
+            poly.Points = new PointCollection(new Point[]
+            {
+                new Point(SIZE, SIZE), new Point(SIZE, 0), new Point(SIZE-BORD, BORD), new Point(SIZE-BORD, SIZE-BORD), new Point(BORD, SIZE-BORD), new Point(0, SIZE)
+            });
+            poly.Fill = SystemColors.ControlDarkBrush;
+            this.Children.Add(poly);
+
+            //放置中央文字
+            Border bord = new Border();
+            bord.Width = SIZE - 2 * BORD;
+            bord.Height = SIZE - 2 * BORD;
+            bord.Background = SystemColors.ControlBrush;
+            this.Children.Add(bord);
+            Canvas.SetLeft(bord, BORD);
+            Canvas.SetTop(bord, BORD);
+
+            //显示文字
+            txtblk = new TextBlock();
+            txtblk.FontSize = 32;
+            txtblk.Foreground = SystemColors.ControlTextBrush;
+            txtblk.HorizontalAlignment = HorizontalAlignment.Center;
+            txtblk.VerticalAlignment = VerticalAlignment.Center;
+            bord.Child = txtblk;
         }
 
-        public class Tile : Canvas
+        //设置文字的property
+        public string Text
         {
-            const int SIZE = 64;
-            const int BORD = 6;
-            TextBlock txtblk;
-
-            public Tile()
-            {
-                this.Width = SIZE;
-                this.Height = SIZE;
-
-                //左上的影子边界
-                Polygon poly = new Polygon();
-                poly.Points = new PointCollection(new Point[]
-                {
-                new Point(0, 0), new Point(SIZE, 0), new Point(SIZE-BORD, BORD), new Point(BORD, BORD), new Point(BORD, SIZE-BORD), new Point(0, SIZE)
-                });
-                poly.Fill = SystemColors.ControlLightBrush;
-                this.Children.Add(poly);
-
-                //右下的影子边界
-                poly = new Polygon();
-                poly.Points = new PointCollection(new Point[]
-                {
-                new Point(SIZE, SIZE), new Point(SIZE, 0), new Point(SIZE-BORD, BORD), new Point(SIZE-BORD, SIZE-BORD), new Point(BORD, SIZE-BORD), new Point(0, SIZE)
-                });
-                poly.Fill = SystemColors.ControlDarkBrush;
-                this.Children.Add(poly);
-
-                //放置中央文字
-                Border bord = new Border();
-                bord.Width = SIZE - 2 * BORD;
-                bord.Height = SIZE - 2 * BORD;
-                bord.Background = SystemColors.ControlBrush;
-                this.Children.Add(bord);
-                Canvas.SetLeft(bord, BORD);
-                Canvas.SetTop(bord, BORD);
-
-                //显示文字
-                txtblk = new TextBlock();
-                txtblk.FontSize = 32;
-                txtblk.Foreground = SystemColors.ControlTextBrush;
-                txtblk.HorizontalAlignment = HorizontalAlignment.Center;
-                txtblk.VerticalAlignment = VerticalAlignment.Center;
-                bord.Child = txtblk;
-            }
-
-            //设置文字的property
-            public string Text
-            {
-                get => txtblk.Text;
-                set => txtblk.Text = value;
-            }
-
+            get => txtblk.Text;
+            set => txtblk.Text = value;
         }
 
     }
-        /// <summary>
-        /// 空白格子
-        /// </summary>
-        public class Empty : System.Windows.FrameworkElement
-        { }
+
+    /// <summary>
+    /// 空白格子
+    /// </summary>
+    public class Empty : System.Windows.FrameworkElement { }
     
 }

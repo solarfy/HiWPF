@@ -1,0 +1,30 @@
+﻿<Page x:Class="BookReader.Pswqxz"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookReader"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="塞外奇侠传">
+
+    <StackPanel TextBlock.FontSize="10pt">
+        <TextBlock Margin="12 12 12 6">
+            <Hyperlink NavigateUri="https://baike.baidu.com/item/%E6%9D%A8%E4%BA%91%E9%AA%A2" TargetName="frameChapter">
+                杨云骢
+            </Hyperlink>
+        </TextBlock>
+
+        <TextBlock Margin="12 12 12 6">
+            <Hyperlink NavigateUri="https://baike.baidu.com/item/%E7%BA%B3%E5%85%B0%E6%98%8E%E6%85%A7" TargetName="frameChapter">
+                纳兰明慧
+            </Hyperlink>
+        </TextBlock>
+
+        <TextBlock Margin="12 12 12 6">
+            <Hyperlink NavigateUri="https://baike.baidu.com/item/%E5%93%88%E7%8E%9B%E9%9B%85" TargetName="frameChapter">
+                哈玛雅
+            </Hyperlink>
+        </TextBlock>
+    </StackPanel>
+</Page>
