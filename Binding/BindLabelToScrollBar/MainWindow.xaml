@@ -1,0 +1,45 @@
+﻿<!--Binding定义一定是出现在此绑定的“目标”控件或element内，绑定的目标必须是一个DependencyObject-->
+    
+<Window x:Class="BindLabelToScrollBar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BindLabelToScrollBar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" TextBlock.FontSize="20">
+    <StackPanel>
+               
+        <ScrollBar x:Name="scroll" Orientation="Horizontal" Margin="24" Value="30" Maximum="100" LargeChange="0" SmallChange="1"/>
+
+        <Label Foreground="Red" HorizontalAlignment="Center" Content="{Binding ElementName=scroll, Path=Value}"/>
+
+        <Label Foreground="Green" HorizontalAlignment="Center">
+            <Label.Content>
+                <Binding ElementName="scroll" Path="Value"/>
+            </Label.Content>
+        </Label>
+
+        <!--在cs文件中进行绑定-->
+        <Label x:Name="label" Foreground="Blue" HorizontalAlignment="Center"/>
+
+        <!--绑定模式OneWay 目标Label跟随源ScrollBar变动-->
+        <Label Foreground="Aqua" HorizontalAlignment="Center" Content="{Binding ElementName=scroll, Path=Value, Mode=OneWay}"/>
+        <!--绑定模式OneTime 目标会从源取得数据，进行初始化，但是不会持续进行跟踪变化-->
+        <Label Foreground="ForestGreen" HorizontalAlignment="Center" Content="{Binding ElementName=scroll, Path=Value, Mode=OneTime}"/>
+        <!--绑定模式TwoWay 具有OneWay的作用，同时目标变动后也会引起源的变动-->
+        <TextBox Foreground="Black" MinWidth="29" HorizontalAlignment="Center" Text="{Binding ElementName=scroll, Path=Value, Mode=TwoWay}"/>
+        <!--绑定模式OneWayToSource 源根据目标来更新 [目标没有DependencyObject，其源中有DependencyObject时，该模式有秒用]-->
+        <TextBox Foreground="Gray" MinWidth="29" HorizontalAlignment="Center" Text="{Binding ElementName=scroll, Path=Value, Mode=OneWayToSource}"/>
+
+        <!--使用DataContext进行绑定 DataContext可以沿着element tree中继承，所以如果为一个element设定DataContext，则该element所有的孩子都会受到影响-->
+        <StackPanel Orientation="Horizontal" DataContext="{Binding ElementName=scroll}" HorizontalAlignment="Center">
+            <Label Foreground="OrangeRed" Content="{Binding Path=Value}" Margin="5,0"/>
+            <TextBlock Foreground="OrangeRed" Text="{Binding Path=Value}" Margin="5, 0" VerticalAlignment="Center"/>
+            <TextBox Foreground="OrangeRed" Text="{Binding Path=Value}" Margin="5 ,0 " VerticalAlignment="Center"/>
+            <Button Foreground="OrangeRed" Content="{Binding Path=Value}" Margin="5, 0"/>
+        </StackPanel>
+
+        <TextBlock Text="&#x00D7;"/>
+    </StackPanel>
+</Window>

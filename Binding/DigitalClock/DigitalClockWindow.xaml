@@ -1,0 +1,64 @@
+﻿<Window x:Class="DigitalClock.DigitalClockWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalClock"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Digital Clock" SizeToContent="WidthAndHeight" ResizeMode="CanResize"
+        FontFamily="Bookman Old Style" FontSize="36pt">
+    <Window.Resources>
+        <local:ClockTicker1 x:Key="clock1"/>
+        <local:ClockTicker2 x:Key="clock2"/>
+        <local:FormattedTextConverter x:Key="FTC"/>
+        <local:FormattedMultiTextConverter x:Key="FMTC"/>
+    </Window.Resources>
+
+    <StackPanel>
+        <TextBlock>
+            <TextBlock.Text>
+                <Binding Source="{StaticResource clock1}" Path="DateTime"/>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <TextBlock>
+            <TextBlock.Text>
+                <Binding Source="{StaticResource clock2}" Path="DateTime"/>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <!--使用系统的StringFormat  具体的格式查看DateTimeFormatInfo类型的帮助文档-->
+        <!--字符串T显示带秒数的时间，t显示不带秒数的时间-->
+        <TextBlock Text="{Binding Source={StaticResource clock2}, Path=DateTime, StringFormat=yyyy-MM-dd HH:mm:ss}"/>
+        <TextBlock Text="{Binding Source={StaticResource clock2}, Path=DateTime, StringFormat=...{0:T}...}"/>
+
+        <!--使用自定义的Converter-->
+        <TextBlock Text="{Binding Source={StaticResource clock2}, Path=DateTime, Converter={StaticResource FTC}, ConverterParameter=...{0:T}...}"/>
+
+        <TextBlock>
+            <TextBlock.Text>
+                    <!--&#x000A(XML风格的换行，这么做是为了避免空格)-->
+                    <MultiBinding Converter="{StaticResource FMTC}" ConverterParameter="Operation System Version: {0}
+                              &#x000A;.Net Version : {1}
+                              &#x000A;MachineName : {2}
+                              &#x000A;User Name : {3}
+                              &#x000A;User Domain Name: {4}
+                              &#x000A;System Directory: {5}
+                              &#x000A;Current Directroy: {6}
+                              &#x000A;Command Line: {7}">
+
+                    <!--这里没有指定Path，是因为调用的是Source本身，可将Path设为空字符串-->
+                    <Binding Source="{x:Static sys:Environment.OSVersion}"/>
+                    <Binding Source="{x:Static sys:Environment.Version}"/>
+                    <Binding Source="{x:Static sys:Environment.MachineName}"/>
+                    <Binding Source="{x:Static sys:Environment.UserName}"/>
+                    <Binding Source="{x:Static sys:Environment.UserDomainName}"/>
+                    <Binding Source="{x:Static sys:Environment.SystemDirectory}"/>
+                    <Binding Source="{x:Static sys:Environment.CurrentDirectory}"/>
+                    <Binding Source="{x:Static sys:Environment.CommandLine}"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </StackPanel>
+</Window>

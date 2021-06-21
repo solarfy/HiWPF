@@ -1,0 +1,32 @@
+﻿<Window x:Class="RelativeSourceDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RelativeSourceDemo"
+        mc:Ignorable="d"
+        Title="Relative Source Demo" Height="450" Width="800" TextBlock.FontSize="16">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="This TextBlock has a FontFamily of "/>
+            <!--RelativeSource self 绑定自身-->
+            <TextBlock Foreground="Green" Text="{Binding RelativeSource={RelativeSource self}, Path=FontFamily}"/>
+            <TextBlock Text=" and a FontSize of "/>
+            <TextBlock Foreground="Red" Text="{Binding RelativeSource={RelativeSource self}, Path=FontSize}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="This TextBlock is inside a StackPanel with "/>
+            <!--AncestorType={x:Type StackPanel} 上级节点的类型-->
+            <TextBlock Foreground="Green" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Path=Orientation}"/>
+            <TextBlock Text=" orientation"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="The parent StackPanel has "/>
+            <!--AncestorLevel 上级级别; 1表示最靠近绑定目标元素的项，2次靠近-->
+            <TextBlock Foreground="Green" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type StackPanel}, AncestorLevel=2}, Path=Orientation}"/>
+            <TextBlock Text=" orientation"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
