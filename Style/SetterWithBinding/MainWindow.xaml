@@ -1,0 +1,130 @@
+﻿<!--Setter不支持派生自Visual或ContetnElement的Value，在特定Style中引用到任何对象，都会被创建一次，成为该Style的一部分-->
+<!-- 错误的示范 Children不支持依赖属性
+    <Style TargetType="{x:Type StackPanel}">
+        <Setter Property="Chidren" Value="..."/>
+    </Style>
+    
+    Image只能有一个父亲，如果共享的话就不止一个父亲
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Image .../>
+            </Setter.Value>
+        </Setter>
+    </Style>
+-->
+    
+<Window x:Class="SetterWithBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SetterWithBinding"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="FontSize" Value="{Binding ElementName=scroll, Path=Value}"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="24"/>
+                <EventSetter Event="Click" Handler="ButtonOnClick"/>
+                
+                <!--Setter 是在元素第一次创建时进行属性设定-->
+                <!--Trigger 只有当某些事情发生时，才会去设定属性-->
+                <Style.Triggers>
+
+                    <!--此处IsPressed不会触发，因为IsMouseOver后执行，会将此Trigger覆盖，可将此Trigger移动至IsMouseOver下方，让其后执行;亦或者使用MultiTrigger-->
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="FontStyle" Value="Italic"/>
+                        <Setter Property="Foreground" Value="Blue"/>
+                        <!--注：此处按钮不会进行改变，想要改变需要用到模板-->
+                        <Setter Property="Background" Value="Red"/> 
+                    </Trigger>
+
+                    <MultiTrigger>
+                        <!--MultiTrigger只会在两个或者多个事件都成立时才能被触发-->
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True"/>
+                            <Condition Property="IsPressed" Value="True"/>
+                        </MultiTrigger.Conditions>
+
+                        <Setter Property="FontSize" Value="28"/>
+                    </MultiTrigger>
+
+                    <!--DataTrigger 用Binding取代Property。Binding通常引用到另一个Element上-->
+                    <DataTrigger Binding="{Binding ElementName=scroll, Path=Value}" Value="11">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding ElementName=scroll, Path=Value}" Value="100"/>
+                            <Condition Binding="{Binding ElementName=scroll, Path=IsMouseOver}" Value="True"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </MultiDataTrigger>
+                    
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="base" TargetType="Line">
+                <Setter Property="Stroke" Value="#7F008000"/>
+            </Style>
+
+            <Style x:Key="horz" TargetType="Line" BasedOn="{StaticResource base}">
+                <Setter Property="X1" Value="100"/>
+                <Setter Property="X2" Value="300"/>
+                <Setter Property="Y2" Value="{Binding RelativeSource={RelativeSource self}, Path=Y1}"/>
+            </Style>
+
+            <Style x:Key="vert" TargetType="Line" BasedOn="{StaticResource base}">
+                <Setter Property="Y1" Value="100"/>
+                <Setter Property="Y2" Value="300"/>
+                <Setter Property="X2" Value="{Binding RelativeSource={RelativeSource self}, Path=X1}"/>
+            </Style>
+        </StackPanel.Resources>
+
+        <ScrollBar Name="scroll" Orientation="Horizontal" Margin="24" Minimum="11" Maximum="100" Value="24"/>
+
+        <!--一个奇怪的现象，此处重新设置Click事件后，仍会触发Style中Event处理-->
+        <Button Content="Open a document" Click="OpenDocumentOnClick"/>
+        <!--共享一个Click事件-->
+        <Button Content="Button Number 1"/>
+        <Button Content="Button Number 2"/>
+        <Button Content="Button Number 3"/>
+
+
+        <StackPanel.Background>
+            <VisualBrush>
+                <VisualBrush.Visual>
+                    <Canvas>
+                        <Line Style="{StaticResource horz}" Y1="100"/>
+                        <Line Style="{StaticResource horz}" Y1="125"/>
+                        <Line Style="{StaticResource horz}" Y1="150"/>
+                        <Line Style="{StaticResource horz}" Y1="175"/>
+                        <Line Style="{StaticResource horz}" Y1="200"/>
+                        <Line Style="{StaticResource horz}" Y1="225"/>
+                        <Line Style="{StaticResource horz}" Y1="250"/>
+                        <Line Style="{StaticResource horz}" Y1="275"/>
+                        <Line Style="{StaticResource horz}" Y1="300"/>
+
+                        <Line Style="{StaticResource vert}" X1="100"/>
+                        <Line Style="{StaticResource vert}" X1="125"/>
+                        <Line Style="{StaticResource vert}" X1="150"/>
+                        <Line Style="{StaticResource vert}" X1="175"/>
+                        <Line Style="{StaticResource vert}" X1="200"/>
+                        <Line Style="{StaticResource vert}" X1="225"/>
+                        <Line Style="{StaticResource vert}" X1="250"/>
+                        <Line Style="{StaticResource vert}" X1="275"/>
+                        <Line Style="{StaticResource vert}" X1="300"/>
+                    </Canvas>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </StackPanel.Background>
+    </StackPanel>
+</Window>

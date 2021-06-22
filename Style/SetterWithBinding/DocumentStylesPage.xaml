@@ -1,0 +1,46 @@
+﻿<Page x:Class="SetterWithBinding.DocumentStylesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SetterWithBinding"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Document Styles">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type Paragraph}" x:Key="normal">
+            <!--缩进-->
+            <Setter Property="TextIndent" Value="0.25in"/>
+        </Style>
+
+        <Style TargetType="{x:Type Paragraph}" x:Key="ChapterHead">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16pt"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <FlowDocumentReader>
+            <FlowDocument>
+                <Paragraph Style="{StaticResource ChapterHead}">
+                    Chapter I
+                </Paragraph>
+
+                <Paragraph Style="{StaticResource ChapterHead}">
+                    Down the Rabbit-Hole
+                </Paragraph>
+
+                <Paragraph Style="{StaticResource normal}">
+                    Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do:
+                    once or twice she had peeped into thef book her sister war reading, but it had no pictures or conversations in it,
+                    &#x201C; and what is the use of a book, &#x201D; thought Alic, &#x201C; without pictures or Conversations?&#x201D;
+                </Paragraph>
+
+                <Paragraph Style="{StaticResource normal}">
+                    ...
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentReader>
+    </Grid>
+</Page>

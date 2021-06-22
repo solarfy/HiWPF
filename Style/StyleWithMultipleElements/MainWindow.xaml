@@ -1,0 +1,66 @@
+﻿<Window x:Class="StyleWithMultipleElements.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StyleWithMultipleElements"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="800">
+    <Window.Resources>
+        <!--此处未指定TargetType [TargetType指定该Style被用到何种类型的元素]-->
+        <!--若设定了TargetType，可以不指定x:Key的值；该节点内符合TargetType条件的元素均会使用该Style（类型完全符合，而不是类型相容）-->
+        <!--使用TargetType后就不需要再Setter内冠以全名-->
+        <Style x:Key="normal">
+            <Setter Property="Control.FontSize" Value="24"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+            <Setter Property="Control.Margin" Value="10"/>
+            <Setter Property="Control.Padding" Value="20 10 20 10"/>
+            <!--如果Setter无法用一个字符串表示一个属性值，可将此Value使用扩展标记写法-->
+            <!--另一个写法就是将该Value值做成资源，通过StaticResource使用-->
+            <Setter Property="Control.Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                        <GradientStop Color="OrangeRed" Offset="0"/>
+                        <GradientStop Color="AntiqueWhite" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--BasedOn引用一个已有的Style-->
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource normal}">
+            <!--此处注释 normal 中已经设置了相关属性-->
+            <!--<Setter Property="FontSize" Value="24"/>--> 
+            <Setter Property="Foreground" Value="Blue"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Red"/>
+        </Style>
+
+        <!--在BasedOn上使用Type，TargetType必须与BasedOn所指定的类型相同或者派生的类型-->
+        <!--第二个TargetType=Button的Style必须指定一个x:Key，否则会引起冲突-->
+        <Style x:Key="targetBtn" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <!--这里使用是第一个Button的Style-->
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel>
+        <!--不同类型的元素，共用一个Style-->
+        <Button Style="{StaticResource normal}" Content="Button on top the stack"/>
+        <TextBlock Style="{StaticResource normal}" Text="TextBlock in the middle of the stack"/>
+        <Label Style="{StaticResource normal}" Content="Label on the bottom of the stack"/>
+
+        <!--没有指定Style 通过TargetType进行传递-->
+        <Button Content="Button with Text Content"/>
+        <TextBlock Text="TextBlock Text"/>
+        <Button>
+            <Button.Content>
+                <!--此处的FontSize是从Button-Style那传递下来的-->
+                <TextBlock Text="Button with TextBlock Content"/>
+            </Button.Content>
+        </Button>
+
+        <Button Style="{StaticResource targetBtn}" Content="Based On Target Type"/>
+    </StackPanel>
+</Window>
