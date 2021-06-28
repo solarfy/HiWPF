@@ -1,0 +1,83 @@
+﻿<!--使用XML中定义的数据，绑定时要用XPath而不是Path-->
+<Page x:Class="ElementWithTemplate.Pages.HierarchicalTemplates"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElementWithTemplate.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Authors and Their Books">
+    <Page.Resources>
+        <!--#1 此处XPath可写成Authors/Author；ItemSource绑定时就不需要指定XPath -->
+        <XmlDataProvider x:Key="data" XPath="Authors">
+            <x:XData>
+                <Authors xmlns="">
+                    <Author Name="Jane Austen">
+                        <BirthDate>1775</BirthDate>
+                        <DeathDate>1817</DeathDate>
+                        <Books>
+                            <Book Title="Sense as Sensibility">
+                                <PubDate>1811</PubDate>
+                            </Book>
+                            <Book Title="Pride and Prejudice">
+                                <PubDate>1813</PubDate>
+                            </Book>
+                        </Books>
+                    </Author>
+                    <Author Name="George Eliot">
+                        <BirthDate>1819</BirthDate>
+                        <DeathDate>1880</DeathDate>
+                        <Books>
+                            <Book Title="Adam Bede">
+                                <PubDate>1859</PubDate>
+                            </Book>
+                            <Book Title="Middlemarch">
+                                <PubDate>1872</PubDate>
+                            </Book>
+                        </Books>
+                    </Author>
+                    <Author Name="Anthony Trollope">
+                        <BirthDate>1815</BirthDate>
+                        <DeathDate>1882</DeathDate>
+                        <Books>
+                            <Book Title="Barchester Towers">
+                                <PubDate>1857</PubDate>
+                            </Book>
+                            <Book Title="The Way We Live Now">
+                                <PubDate>1875</PubDate>
+                            </Book>
+                        </Books>
+                    </Author>
+                </Authors>
+            </x:XData>
+        </XmlDataProvider>
+
+        <!--指定了DataType；ItemsSource该模板中下一级别的数据节点-->
+        <HierarchicalDataTemplate DataType="Author" ItemsSource="{Binding XPath=Books/Book}">
+            <StackPanel Orientation="Horizontal" TextBlock.FontSize="12pt">
+                <TextBlock Text="{Binding XPath=@Name}"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding XPath=BirthDate, StringFormat=yyyy-MM-dd}"/>
+                <TextBlock Text="-"/>
+                <TextBlock Text="{Binding XPath=DeathDate, StringFormat=yyyy-MM-dd}"/>
+                <TextBlock Text=")"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <!--指定DataType；该级别不具有下一级别，所以不指定ItemsSource-->
+        <HierarchicalDataTemplate DataType="Book">
+            <StackPanel Orientation="Horizontal" TextBlock.FontFamily="10pt">
+                <TextBlock Text="{Binding XPath=@Title}"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding XPath=PubDate}"/>
+                <TextBlock Text=")"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </Page.Resources>
+    
+    <Grid>
+        <!--#2 此处XPath可写成Authors/Author；XmlDataProvider中就不需要指定XPath-->
+        <TreeView ItemsSource="{Binding Source={StaticResource ResourceKey=data}, XPath=Author}"/>
+    </Grid>
+</Page>

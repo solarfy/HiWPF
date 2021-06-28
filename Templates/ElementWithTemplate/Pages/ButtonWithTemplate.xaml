@@ -1,0 +1,61 @@
+﻿<Page x:Class="ElementWithTemplate.Pages.ButtonWithTemplate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElementWithTemplate"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Button With Template">
+
+    <Page.Resources>
+        <!--指定了TargetType免去了在依赖属性和路由事件前加上类型名称的必要-->
+        <ControlTemplate x:Key="btnCustom" TargetType="{x:Type Button}">
+            <Border Name="border" BorderThickness="3" BorderBrush="Red" Background="{TemplateBinding Foreground}">
+                <!--所有派生自ContentControl的类型都可以用ContentPresenter类型的对象来显示它们的内容-->
+                <ContentPresenter Name="presenter" Content="{TemplateBinding Content}" TextBlock.FontStyle="Italic" Margin="{TemplateBinding Padding}" TextBlock.Foreground="{TemplateBinding Background}"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="border" Property="CornerRadius" Value="12"/>
+                    <Setter TargetName="presenter" Property="TextBlock.FontWeight" Value="Bold"/>
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <!--注：此处用的不是TemplateBinding而是Binding-->
+                    <Setter TargetName="border" Property="Background" Value="{Binding Path=Background}"/>
+                    <Setter TargetName="presenter" Property="TextBlock.Foreground" Value="{Binding Path=Foregrround}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <StackPanel>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Padding="20" Content="Button With Template" Margin="10">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border Name="border" BorderThickness="3" BorderBrush="Red" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+                        <!--TemplatingBinding 此模板中视觉树中的一个属性，可以和控件的一个属性连接起来-->
+                        <TextBlock Name="txtblk" FontStyle="Italic" Text="{TemplateBinding ContentControl.Content}" Margin="{TemplateBinding Control.Padding}"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Border.CornerRadius" Value="24"/>
+                            <Setter TargetName="txtblk" Property="TextBlock.FontWeight" Value="Bold"/>
+                        </Trigger>
+
+                        <Trigger Property="Button.IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Border.Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Template="{StaticResource btnCustom}" HorizontalAlignment="Center" Margin="24" FontSize="24" Padding="10" Content="Button With Custom Template"/>
+        <Button HorizontalAlignment="Center" Margin="24" FontSize="24" Padding="10" Content="Normal Button"/>
+        <Button Template="{StaticResource btnCustom}" HorizontalAlignment="Center" Margin="24" FontSize="24" Padding="10" Content="Another Button With Custom Template"/>
+    </StackPanel>
+</Page>

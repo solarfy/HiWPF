@@ -1,0 +1,8 @@
+﻿<HelpContents xmlns="">
+  <Topic Header="Copyright Information" Source="Documents/Copyright.xaml"/>
+  <Topic Header="Program Overview" Source="Documents/Overview.xaml"/>
+  <Topic Header="The Mneus">
+    <Topic Header="The File Menu" Source="Documents/FileMenu.xaml"/>
+    <Topic Header="The Help Menu" Source="Documents/HelpMenu.xaml"/>
+  </Topic>  
+</HelpContents>

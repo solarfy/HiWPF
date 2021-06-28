@@ -1,0 +1,74 @@
+﻿<!--ContentControl对象自动在资源中搜索“符合内容类型”的DateTemplate，就像Button本身搜索“TargetType=Button”的Style-->
+
+<Page x:Class="ElementWithTemplate.Pages.AutoTemplateSelection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElementWithTemplate.Pages"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AutoTemplateSelection">
+    
+    <Page.Resources>
+        <DataTemplate DataType="{x:Type sys:Int32}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Integer: "/>
+                <TextBlock Text="{Binding}"/>
+            </StackPanel> 
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type sys:Double}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Double: "/>
+                <TextBlock Text="{Binding}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type sys:String}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="String: "/>
+                <TextBlock Text="{Binding}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type sys:DateTime}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="DateTime: "/>
+                <TextBlock Text="{Binding Path=Month}"/>
+                <TextBlock Text="/"/>
+                <TextBlock Text="{Binding Path=Day}"/>
+                <TextBlock Text="/"/>
+                <TextBlock Text="{Binding Path=Year}"/>
+                <TextBlock Text="---"/>
+                <TextBlock Text="{Binding Path=Date, StringFormat=yyyyMMdd}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="FontSize" Value="12pt"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+    </Page.Resources>
+    
+    <StackPanel>
+        <Button>
+            <sys:Int32>276</sys:Int32>
+        </Button>
+
+        <Button>
+            <sys:Double>3.1415926</sys:Double>
+        </Button>
+
+        <Button>
+            <sys:String>GOOD</sys:String>
+        </Button>
+
+        <Button>
+            <x:Static Member="sys:DateTime.Now"/>
+        </Button>
+    </StackPanel>
+</Page>

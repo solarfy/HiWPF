@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace CircleTheButtons
 {    
-    class RadialPanel : Panel
+    public class RadialPanel : Panel
     {
         public static readonly DependencyProperty OrientationProperty;
 

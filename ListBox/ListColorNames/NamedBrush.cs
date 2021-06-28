@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace ListColorNames
 {
-    class NamedBrush
+    public class NamedBrush
     {
         static NamedBrush[] nbrushes;
         Brush brush;

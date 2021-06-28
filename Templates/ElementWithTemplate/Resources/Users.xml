@@ -1,0 +1,32 @@
+﻿<Users xmlns="">
+  <User Name="傅红雪">
+    <BirthDate>5/3/1740</BirthDate>
+    <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+    <LeftHanded>False</LeftHanded>
+  </User>
+  <User Name="叶开">
+    <BirthDate>30/6/1740</BirthDate>
+    <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+    <LeftHanded>True</LeftHanded>
+  </User>
+  <User Name="公子羽">
+    <BirthDate>15/4/1732</BirthDate>
+    <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+    <LeftHanded>False</LeftHanded>
+  </User>
+  <User Name="明月心">
+    <BirthDate>26/11/1743</BirthDate>
+    <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+    <LeftHanded>False</LeftHanded>
+  </User>
+  <User Name="周婷">
+    <BirthDate>23/8/1742</BirthDate>
+    <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+    <LeftHanded>True</LeftHanded>
+  </User>
+  <User Name="燕南飞">
+    <BirthDate>18/6/1734</BirthDate>
+    <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+    <LeftHanded>False</LeftHanded>
+  </User>
+</Users>

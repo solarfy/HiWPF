@@ -1,0 +1,75 @@
+﻿<!--引用项目CustomPanel-CircleTheButtons -->
+<Page x:Class="ElementWithTemplate.Pages.UserWheelDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElementWithTemplate.Pages"
+      xmlns:rp="clr-namespace:CircleTheButtons;assembly=CircleTheButtons"   
+      Title="User Wheel">
+
+    <Page.Resources>
+        <!--#1通过外部资源的方式加载Users-->
+        <!--XPath 用来指定每个条目都是一个节点（node）-->
+        <XmlDataProvider x:Key="users" Source="/ElementWithTemplate;component/Resources/Users.xml" XPath="Users"/>
+        
+        <!--#2通过内嵌的方式加载Users-->
+        <XmlDataProvider x:Key="full_users" XPath="Users">
+            <x:XData>
+                <!-- 必须设置xmlns="" -->
+                <Users xmlns="">
+                    <User Name="戚少商">
+                        <BirthDate>8/6/1737</BirthDate>
+                        <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+                        <LeftHanded>False</LeftHanded>
+                    </User>
+                    <User Name="苏梦枕">
+                        <BirthDate>12/12/1737</BirthDate>
+                        <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+                        <LeftHanded>True</LeftHanded>
+                    </User>
+                    <User Name="狄飞惊">
+                        <BirthDate>18/5/1735</BirthDate>
+                        <Face>/ElementWithTemplate;component/Resources/face.png</Face>
+                        <LeftHanded>False</LeftHanded>
+                    </User>
+                </Users>
+            </x:XData>
+        </XmlDataProvider>
+    </Page.Resources>
+    
+    <Grid>
+        <!--XPath 获取或设置 XPath 查询，该查询返回要使用的 XML 绑定源上的值-->
+        <ListBox Name="lstbox" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                 ItemsSource="{Binding Source={StaticResource users}, XPath=User}" SelectedValuePath="Face">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <rp:RadialPanel Orientation="ByHeight"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Margin="3">
+                        <Image DockPanel.Dock="Right" Stretch="None" Source="{Binding XPath=Face}"/>
+                        <UniformGrid Rows="3" VerticalAlignment="Center" Margin="12">
+                            <!--Name是element的attribute，为了引用XMLdata的attribute，必须在名称前面放上@符号-->
+                            <TextBlock FontSize="16pt" TextAlignment="Center" Text="{Binding XPath=@Name}"/>
+                            <TextBlock FontSize="12pt" TextAlignment="Center" Text="{Binding XPath=BirthDate}"/>
+                            <TextBlock Name="txtblkHanded" FontSize="12pt" TextAlignment="Center" Text="Right-Handed"/>
+                        </UniformGrid>
+                    </DockPanel>
+
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding XPath=LeftHanded}" Value="True">
+                            <Setter TargetName="txtblkHanded" Property="Text" Value="Left-Handed"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
+               Source="{Binding ElementName=lstbox, Path=SelectedValue}"/>
+    </Grid>
+</Page>

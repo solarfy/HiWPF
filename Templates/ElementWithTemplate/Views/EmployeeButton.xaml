@@ -1,0 +1,73 @@
+﻿<Button x:Class="ElementWithTemplate.Views.EmployeeButton"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"            
+      xmlns:models="clr-namespace:ElementWithTemplate.Models"     
+      >
+
+    <Button.Resources>
+        <models:EmployeeTemplateSelector x:Key="selectTemplate"/>
+
+        <DataTemplate x:Key="templateRight">
+            <DockPanel>
+                <Image DockPanel.Dock="Right" Stretch="None" Source="{Binding Path=Face}"  />
+                <UniformGrid Rows="2" VerticalAlignment="Center" Margin="12">
+                    <TextBlock FontSize="16pt" TextAlignment="Center" Text="{Binding Path=Name}"/>
+                    <StackPanel Orientation="Horizontal" TextBlock.FontSize="12pt">
+                        <TextBlock Text="{Binding Path=BirthDate.Month}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=BirthDate.Day}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=BirthDate.Year}"/>
+                    </StackPanel>
+                </UniformGrid>
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="templateLeft">
+            <DockPanel>
+                <Image DockPanel.Dock="Left" Stretch="None" Source="{Binding Path=Face}"  />
+                <UniformGrid Rows="2" VerticalAlignment="Center" Margin="12">
+                    <TextBlock FontSize="16pt" TextAlignment="Center" Text="{Binding Path=Name}"/>
+                    <StackPanel Orientation="Horizontal" TextBlock.FontSize="12pt">
+                        <TextBlock Text="{Binding Path=BirthDate.Month}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=BirthDate.Day}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=BirthDate.Year}"/>
+                    </StackPanel>
+                </UniformGrid>
+            </DockPanel>
+        </DataTemplate>
+    </Button.Resources>
+
+    <!--#1通过选择模板 改变样式-->
+    <Button.ContentTemplateSelector>
+        <StaticResource ResourceKey="selectTemplate"/>
+    </Button.ContentTemplateSelector>
+    
+    <!--#2使用DataTrigger 改变样式-->
+    <!--DataType用来定位吻合Content属性数据类型的资源-->
+    <!--<Button.ContentTemplate>        
+        <DataTemplate DataType="{x:Type models:Employee}">
+            <DockPanel>
+                <Image Name="img" DockPanel.Dock="Right" Stretch="None" Source="{Binding Path=Face}"  />
+                <UniformGrid Rows="2" VerticalAlignment="Center" Margin="12">
+                    <TextBlock FontSize="16pt" TextAlignment="Center" Text="{Binding Path=Name}"/>
+                    <StackPanel Orientation="Horizontal" TextBlock.FontSize="12pt">
+                        <TextBlock Text="{Binding Path=BirthDate.Month}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=BirthDate.Day}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=BirthDate.Year}"/>
+                    </StackPanel>
+                </UniformGrid>
+            </DockPanel>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=LeftHanded}" Value="True">
+                    <Setter TargetName="img" Property="DockPanel.Dock" Value="Left"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </Button.ContentTemplate>-->
+</Button>

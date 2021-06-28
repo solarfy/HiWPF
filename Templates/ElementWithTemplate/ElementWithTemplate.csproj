@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{80DB60C9-CD29-49D8-8921-FA1A3AFAF982}</ProjectGuid>
+    <ProjectGuid>{10831B31-C5F6-44CE-A0BE-C05499ABD308}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CircleTheButtons</RootNamespace>
-    <AssemblyName>CircleTheButtons</AssemblyName>
+    <RootNamespace>ElementWithTemplate</RootNamespace>
+    <AssemblyName>ElementWithTemplate</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,8 +55,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Enums.cs" />
-    <Compile Include="RadialPanel.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeTemplateSelector.cs" />
+    <Compile Include="Pages\AutoTemplateSelection.xaml.cs">
+      <DependentUpon>AutoTemplateSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ColorListBoxTemplateDemo.xaml.cs">
+      <DependentUpon>ColorListBoxTemplateDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ContentTemplateDemo.xaml.cs">
+      <DependentUpon>ContentTemplateDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreateDatePicker.xaml.cs">
+      <DependentUpon>CreateDatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HierarchicalTemplates.xaml.cs">
+      <DependentUpon>HierarchicalTemplates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ToggleSwitch.xaml.cs">
+      <DependentUpon>ToggleSwitch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserWheelDemo.xaml.cs">
+      <DependentUpon>UserWheelDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeButton.xaml.cs">
+      <DependentUpon>EmployeeButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserDatePicker.xaml.cs">
+      <DependentUpon>UserDatePicker.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\AutoTemplateSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ButtonWithTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,10 +100,45 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Pages\ButtonWithTemplate.xaml.cs">
+      <DependentUpon>ButtonWithTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ColorListBoxTemplateDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ContentTemplateDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CreateDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HierarchicalTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ToggleSwitch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserWheelDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -96,6 +165,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\face.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CustomPanel\CircleTheButtons\CircleTheButtons.csproj">
+      <Project>{80db60c9-cd29-49d8-8921-fa1a3afaf982}</Project>
+      <Name>CircleTheButtons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ListBox\ListColorNames\ListColorNames.csproj">
+      <Project>{06325ed2-e593-4de6-b33a-7278341dde2a}</Project>
+      <Name>ListColorNames</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Users.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

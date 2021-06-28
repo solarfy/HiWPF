@@ -1,0 +1,116 @@
+﻿<!-- 注：
+    模板中的名称（Name attribute）不会自动变成变量名称，主要是因为相同的模板可以被用在多个控件中；
+    在此类型的C#代码中，必须使用FindName在一个模板中找出特定名称的元素；如果模板内的元素尚未被转换成真正的对象（如模板未被使用），
+    FindName会返回Null。为了确定FindName返回一个有效的值，可以在调用FindName之前加上ApplyTemplate方法。
+-->
+    
+<UserControl x:Class="ElementWithTemplate.Views.UserDatePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ElementWithTemplate.Views"
+             xmlns:global="clr-namespace:System.Globalization;assembly=mscorlib"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"             
+             >
+    <UserControl.Resources>
+        <x:Array x:Key="weeks" Type="{x:Type TextBlock}">
+            <TextBlock>一</TextBlock>
+            <TextBlock>二</TextBlock>
+            <TextBlock>三</TextBlock>
+            <TextBlock>四</TextBlock>
+            <TextBlock>五</TextBlock>
+            <TextBlock Foreground="Red">六</TextBlock>
+            <TextBlock Foreground="Red">日</TextBlock>
+        </x:Array>
+        
+        <Style TargetType="{x:Type RepeatButton}">
+            <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource self}, Path=ActualWidth}"/>
+            <Setter Property="Focusable" Value="False"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=chkboxNull, Path=IsChecked}" Value="True">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type StatusBarItem}">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True"/>
+                        <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                </MultiTrigger>
+
+                <DataTrigger Binding="{Binding ElementName=chkboxNull, Path=IsChecked}" Value="True">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+        
+    <Border BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" TextBlock.Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <RepeatButton Grid.Column="0" Width="30" Content="&lt;" FontWeight="Bold" Click="ButtonBackOnClick"/>
+                <TextBlock Name="txtblkMonthYear" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3"/>
+                <RepeatButton Grid.Column="2" Width="30" Content="&gt;" FontWeight="Bold" Click="ButtonForwardOnClick"/>
+            </Grid>
+
+            <!--显示星期 使用StatusBar是为了可以显示多个条目，且不允许条目被选择-->
+            <!--使用系统提供的本地日期信息  ItemsSource="{Binding Source={x:Static global:DateTimeFormatInfo.CurrentInfo}, Path=AbbreviatedDayNames}"-->
+            <StatusBar Grid.Row="1" ItemsSource="{StaticResource weeks}">
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1"/>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+            </StatusBar>
+
+            <!--显示月份 使用C#代码在此填入一个月内的每一天-->
+            <Border Grid.Row="2" BorderThickness="0 1 0 1" BorderBrush="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}">
+                <ListBox Name="lstboxMonth" SelectionChanged="ListBoxOnSelectionChanged">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <!--IsItemsHost 用于指示在ItemsControl的模板中，生成的元素应该放在什么位置；为True放在容器中-->
+                            <!--模板内定义的Name，无法在C#代码中使用-->
+                            <UniformGrid Name="ungridMonth" Columns="7" Rows="6" IsItemsHost="True" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBoxItem>dummy item</ListBoxItem>
+                </ListBox>
+            </Border>
+
+            <CheckBox Name="chkboxNull" Grid.Row="3" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBoxNullOnChecked" Unchecked="CheckBoxNullOnUnchecked">
+                Not applicable
+            </CheckBox>
+        </Grid>
+    </Border>
+</UserControl>
