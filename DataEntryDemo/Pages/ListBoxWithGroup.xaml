@@ -1,0 +1,62 @@
+﻿<Page x:Class="DataEntryDemo.Pages.ListBoxWithGroup"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DataEntryDemo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ListBox with group">
+
+    <DockPanel Name="dock">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open..." Click="OpenFileOnClick"/>
+            </MenuItem>
+        </Menu>
+
+        <ListBox Name="lstbox" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="300" Margin="24">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=FirstName}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=MiddleName}"/>
+                        <TextBlock Name="txtblkSpace" Text=" "/>
+                        <TextBlock Text="{Binding Path=LastName}"/>
+                        <TextBlock Text="("/>
+                        <TextBlock Text="{Binding Path=BirthDate.Year}"/>
+                        <TextBlock Text="-"/>
+                        <TextBlock Name="txtblkDeath" Text="{Binding Path=DeathDate.Year}"/>
+                        <TextBlock Text=")"/>
+                    </StackPanel>
+
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=DeathDate}" Value="{x:Null}">
+                            <Setter TargetName="txtblkDeath" Property="Text" Value="present"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=MiddleName}" Value="">
+                            <Setter TargetName="txtblkSpace" Property="Text" Value=""/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBox.GroupStyle>
+                <!-- ListBox的GroupStyle属性是GroupStyle的collection，如果collection中有超过一个GroupStyle对象，
+                     就必须设定ListBox的GroupStyleSelector属性为一个“符合GroupStyleSelector 委托定义的方法”，
+                     该方法的参数是group名称，返回该名称对应的GroupStyle
+                -->
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <!--此处绑定的Name，是组名称-->
+                            <TextBlock Text="{Binding Path=Name}" Foreground="White" Background="DarkGray"
+                                       FontWeight="Bold" FontSize="12pt" Margin="6"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+        </ListBox>
+    </DockPanel>
+</Page>

@@ -1,0 +1,45 @@
+﻿<ToolBar x:Class="DataEntryDemo.View.NavigationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataEntryDemo.View"
+             >
+    <Button Click="FirstOnClick" ToolTip="Move first">
+        <Image Source="/DataEntryDemo;component/Image/fast.png" Stretch="None"/>
+    </Button>
+    <Button Name="btnPrev" Click="PreviousOnClick" ToolTip="Move Previous">
+        <Image Source="/DataEntryDemo;component/Image/normal.png" Stretch="None"/>
+    </Button>
+    <Separator/>
+
+    <TextBox Name="txtboxCurrent" Width="48" ToolTip="Current position" 
+             GotKeyboardFocus="TextBoxOnGotFoucus" LostKeyboardFocus="TextBoxOnLostFocus" KeyDown="TextBoxOnKeyDown"/>
+    <TextBlock Text="of " VerticalAlignment="Center"/>
+    <TextBlock Name="txtblkTotal" Text="0" VerticalAlignment="Center" ToolTip="Total number of items"/>
+    <Separator/>
+       
+    <Button Name="btnNext" Click="NextOnClick" ToolTip="Move next">
+        <Image Source="/DataEntryDemo;component/Image/normal.png" Stretch="None">
+            <Image.LayoutTransform>
+                <RotateTransform Angle="180"/>
+            </Image.LayoutTransform>
+        </Image>
+    </Button>
+    <Button Click="LastOnClick" ToolTip="Move last">
+        <Image Source="/DataEntryDemo;component/Image/fast.png" Stretch="None">
+            <Image.LayoutTransform>
+                <RotateTransform Angle="180"/>
+            </Image.LayoutTransform>
+        </Image>
+    </Button>
+    <Separator/>
+
+    <Button Click="AddOnClick" ToolTip="Add new">
+        <Image Source="/DataEntryDemo;component/Image/new.png" Stretch="None"/>
+    </Button>
+    <Button Name="btnDel" Click="DeleteOnClick" ToolTip="Delete">
+        <Image Source="/DataEntryDemo;component/Image/delete.png" Stretch="None"/>
+    </Button>
+
+</ToolBar>

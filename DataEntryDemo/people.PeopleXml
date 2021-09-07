@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Person>
+    <FirstName>洪武</FirstName>
+    <MiddleName></MiddleName>
+    <LastName />
+    <BirthDate>1368</BirthDate>
+    <DeathDate>1398</DeathDate>
+  </Person>
+  <Person>
+    <FirstName>建文</FirstName>
+    <MiddleName></MiddleName>
+    <LastName />
+    <BirthDate>1399</BirthDate>
+    <DeathDate>1402</DeathDate>
+  </Person>
+  <Person>
+    <FirstName>永乐</FirstName>
+    <MiddleName></MiddleName>
+    <LastName />
+    <BirthDate>1403</BirthDate>
+    <DeathDate>1424</DeathDate>
+  </Person>
+<Person>
+    <FirstName>洪熙</FirstName>
+    <MiddleName></MiddleName>
+    <LastName />
+    <BirthDate>1424</BirthDate>
+    <DeathDate>1425</DeathDate>
+  </Person>
+<Person>
+    <FirstName>宣德</FirstName>
+    <MiddleName></MiddleName>
+    <LastName />
+    <BirthDate>1426</BirthDate>
+    <DeathDate>1435</DeathDate>
+  </Person>
+<Person>
+    <FirstName>正统</FirstName>
+    <MiddleName></MiddleName>
+    <LastName />
+    <BirthDate>1436</BirthDate>
+    <DeathDate>1449</DeathDate>
+  </Person>
+</ArrayOfPerson>
