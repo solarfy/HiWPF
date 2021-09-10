@@ -1,0 +1,104 @@
+﻿<Page x:Class="GraphicalShapes.Pages.LineCaps"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphicalShapes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Line Caps">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Line的线帽">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Canvas}">
+                        <Setter Property="Width" Value="150"/>
+                        <Setter Property="Margin" Value="12"/>
+                    </Style>
+
+                    <Style x:Key="thin">
+                        <Setter Property="Line.X1" Value="0"/>
+                        <Setter Property="Line.Y1" Value="50"/>
+                        <Setter Property="Line.X2" Value="100"/>
+                        <Setter Property="Line.Y2" Value="50"/>
+                        <Setter Property="Line.Stroke" Value="Black"/>
+                    </Style>
+
+                    <Style x:Key="thick" BasedOn="{StaticResource thin}">
+                        <Setter Property="Line.Stroke" Value="LightGray"/>
+                        <Setter Property="Line.StrokeThickness" Value="25"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <Canvas>
+                    <TextBlock Text="PenLineCap.Flat"/>
+                    <Line Style="{StaticResource thick}" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat"/>
+                    <Line Style="{StaticResource thin}"/>
+                </Canvas>
+
+                <Canvas>
+                    <TextBlock Text="PenLineCap.Square"/>
+                    <Line Style="{StaticResource thick}" StrokeStartLineCap="Square" StrokeEndLineCap="Square"/>
+                    <Line Style="{StaticResource thin}"/>
+                </Canvas>
+
+                <Canvas>
+                    <TextBlock Text="PenLineCap.Round"/>
+                    <Line Style="{StaticResource thick}" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    <Line Style="{StaticResource thin}"/>
+                </Canvas>
+
+                <Canvas>
+                    <TextBlock Text="PenLineCap.Triangle"/>
+                    <Line Style="{StaticResource thick}" StrokeStartLineCap="Triangle" StrokeEndLineCap="Triangle"/>
+                    <Line Style="{StaticResource thin}"/>
+                </Canvas>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Header="StrokeLineJoin连接线">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Canvas.Left" Value="25"/>
+                    </Style>
+
+                    <Style TargetType="{x:Type Canvas}">
+                        <Setter Property="Width" Value="150"/>
+                        <Setter Property="Margin" Value="12"/>
+                    </Style>
+
+                    <Style TargetType="{x:Type Rectangle}">
+                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Height" Value="100"/>
+                        <Setter Property="Canvas.Top" Value="50"/>
+                        <Setter Property="Canvas.Left" Value="25"/>
+                        <Setter Property="Stroke" Value="Black"/>
+                        <Setter Property="StrokeThickness" Value="25"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <Canvas>
+                    <TextBlock Text="PenLineJoin.Bevel"/>
+                    <Rectangle StrokeLineJoin="Bevel"/>
+                </Canvas>
+
+                <Canvas>
+                    <TextBlock Text="PenLineJoin.Round"/>
+                    <Rectangle StrokeLineJoin="Round"/>
+                </Canvas>
+
+                <Canvas>
+                    <TextBlock Text="PenLineJoin.Miter"/>
+                    <Rectangle StrokeLineJoin="Miter"/>
+                </Canvas>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Page>

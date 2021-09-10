@@ -1,0 +1,78 @@
+﻿<NavigationWindow x:Class="GraphicalShapes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphicalShapes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" ShowsNavigationUI="False">
+    <NavigationWindow.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" MinWidth="100"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="8*" MinWidth="100"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="12,6,12,6"/>
+                    </Style>
+                </StackPanel.Resources>
+                
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/SineWave.xaml" TargetName="frame">
+                        正弦波
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/Spiral.xaml" TargetName="frame">
+                        螺旋
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/SelfPortaltSansGlasses.xaml" TargetName="frame">
+                        自画像
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/TwoFillRules.xaml" TargetName="frame">
+                        两种填充规则
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/LineCaps.xaml" TargetName="frame">
+                        线帽
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/PenProperties.xaml" TargetName="frame">
+                        PenProperties
+                    </Hyperlink>
+                </TextBlock>
+                
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/DashCaps.xaml" TargetName="frame">
+                        DashCaps
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/EllipseWithStyledLines.xaml" TargetName="frame">
+                        虚线围绕的椭圆
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+
+            <GridSplitter Grid.Column="1" Width="4" VerticalAlignment="Stretch" Background="Silver"/>
+
+            <Frame Grid.Column="2" Name="frame" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </NavigationWindow.Content>
+</NavigationWindow>

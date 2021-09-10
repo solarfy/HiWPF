@@ -1,0 +1,58 @@
+﻿<Page x:Class="GraphicalShapes.Pages.TwoFillRules"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphicalShapes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TwoStars">
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <Canvas TextBlock.FontSize="16" Height="1000">
+            <Canvas.Resources>
+                <Style x:Key="star">
+                    <Setter Property="Polygon.Points"
+                            Value="0 -96, 56 78, -91 -30, 91 -30, -56 78"/>
+                    <Setter Property="Polygon.Fill" Value="Blue"/>
+                    <Setter Property="Polygon.Stroke" Value="Red"/>
+                    <Setter Property="Polygon.StrokeThickness" Value="3"/>
+                </Style>
+
+                <Style x:Key="figure">
+                    <Setter Property="Polygon.Points"
+                            Value="0 0, 0 144, 144 144, 144 24, 24 24, 24 168, 168 168, 168 48, 
+                            48 48, 48 192, 192 192, 192 72, 72 72, 72 216, 216 216, 216 96, 96 96,
+                            96 240, 240 240, 240 120, 120 120, 120 264, 264 264, 264 0"/>
+                    <Setter Property="Polygon.Fill" Value="Blue"/>
+                    <Setter Property="Polygon.Stroke" Value="Red"/>
+                    <Setter Property="Polygon.StrokeThickness" Value="3"/>
+                </Style>
+
+                <Style x:Key="ff">
+                    <Setter Property="Polygon.Points"
+                            Value="0 48, 0 144, 96 144, 96 0, 192 0, 192 96, 48 96, 48 192, 144 192, 144 48"/>
+                    <Setter Property="Polygon.Fill" Value="Blue"/>
+                    <Setter Property="Polygon.Stroke" Value="Red"/>
+                    <Setter Property="Polygon.StrokeThickness" Value="3"/>
+                </Style>
+            </Canvas.Resources>
+
+            <TextBlock TextWrapping="Wrap" Width="800" >
+                FillRule填充规则：如果设置为EvenOdd：WPF计算为了到达图形的外部必须穿过的直线数量。如果是奇数，就填充区域；如果是偶数就不填充改区域。
+                如果属性设置为Nonzero填充规则，WPF计算为了到达图形的外部经过的正反向和反方向的直线数量差。如果等于0就不填充该区域，如果等于0就填充。
+            </TextBlock>
+
+            <TextBlock Canvas.Left="48" Canvas.Top="124" Text="FillRule = EvenOdd"/>
+            <Polygon Style="{StaticResource star}" FillRule="EvenOdd" Canvas.Left="120" Canvas.Top="268"/>
+            <Polygon Style="{StaticResource figure}" FillRule="EvenOdd" Canvas.Left="50" Canvas.Top="400"/>
+            <Polygon Style="{StaticResource ff}" FillRule="EvenOdd" Canvas.Left="50" Canvas.Top="700"/>
+
+            <TextBlock Canvas.Left="288" Canvas.Top="124" Text="FillRule = NonZero"/>
+            <Polygon Style="{StaticResource star}" FillRule="Nonzero" Canvas.Left="360" Canvas.Top="268"/>
+            <Polygon Style="{StaticResource figure}" FillRule="Nonzero" Canvas.Left="350" Canvas.Top="400"/>
+            <Polygon Style="{StaticResource ff}" FillRule="Nonzero" Canvas.Left="350" Canvas.Top="700"/>
+
+        </Canvas>
+    </ScrollViewer>
+</Page>
