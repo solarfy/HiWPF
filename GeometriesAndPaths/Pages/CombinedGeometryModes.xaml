@@ -1,0 +1,91 @@
+﻿<Page x:Class="GeometriesAndPaths.Pages.CombinedGeometryModes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GeometriesAndPaths.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CombinedGeometryModes">
+
+    <!--CombinedGeometry与GeometryGroup区别-->
+    <!--CombinedGeometry没有Children，它有两个属性Gemmetry1和Geometry2-->
+    <!--CombinedGeometry是两个且只有两个的几何组合-->
+    <!--CombinedGeometry没有FillRule属性，而有GeometryCombineMode属性-->
+    
+    <UniformGrid>
+        <UniformGrid.Resources>
+            <Style TargetType="{x:Type Path}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Fill" Value="Blue"/>
+                <Setter Property="Stroke" Value="Red"/>
+                <Setter Property="StrokeThickness" Value="5"/>
+            </Style>
+        </UniformGrid.Resources>
+
+        <Grid>
+            <TextBlock HorizontalAlignment="Center" Text="GeomtryCombineMode=Union"/>
+            <Path>
+                <Path.Data>
+                    <CombinedGeometry GeometryCombineMode="Union">
+                        <CombinedGeometry.Geometry1>
+                            <EllipseGeometry Center="96 96" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry1>
+                        <CombinedGeometry.Geometry2>
+                            <EllipseGeometry Center="48 48" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry2>
+                    </CombinedGeometry>
+                </Path.Data>
+            </Path>
+        </Grid>
+
+        <Grid>
+            <TextBlock HorizontalAlignment="Center" Text="GeomtryCombineMode=Intersect"/>
+            <Path>
+                <Path.Data>
+                    <CombinedGeometry GeometryCombineMode="Intersect">
+                        <CombinedGeometry.Geometry1>
+                            <EllipseGeometry Center="96 96" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry1>
+                        <CombinedGeometry.Geometry2>
+                            <EllipseGeometry Center="48 48" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry2>
+                    </CombinedGeometry>
+                </Path.Data>
+            </Path>
+        </Grid>
+
+        <Grid>
+            <TextBlock HorizontalAlignment="Center" Text="GeomtryCombineMode=Xor"/>
+            <Path>
+                <Path.Data>
+                    <CombinedGeometry GeometryCombineMode="Xor">
+                        <CombinedGeometry.Geometry1>
+                            <EllipseGeometry Center="96 96" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry1>
+                        <CombinedGeometry.Geometry2>
+                            <EllipseGeometry Center="48 48" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry2>
+                    </CombinedGeometry>
+                </Path.Data>
+            </Path>
+        </Grid>
+
+        <Grid>
+            <TextBlock HorizontalAlignment="Center" Text="GeomtryCombineMode=Exclude"/>
+            <Path>
+                <Path.Data>
+                    <CombinedGeometry GeometryCombineMode="Exclude">
+                        <CombinedGeometry.Geometry1>
+                            <EllipseGeometry Center="96 96" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry1>
+                        <CombinedGeometry.Geometry2>
+                            <EllipseGeometry Center="48 48" RadiusX="96" RadiusY="96"/>
+                        </CombinedGeometry.Geometry2>
+                    </CombinedGeometry>
+                </Path.Data>
+            </Path>
+        </Grid>
+    </UniformGrid>
+</Page>

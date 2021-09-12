@@ -1,0 +1,88 @@
+﻿<Page x:Class="GeometriesAndPaths.Pages.GeomertyDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GeometriesAndPaths.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GeomertyDemo">
+
+    <UniformGrid>
+        <Canvas>
+            <Path Stroke="Blue" StrokeThickness="3">
+                <Path.Data>
+                    <LineGeometry StartPoint="96 96" EndPoint="192 192"/>
+                </Path.Data>
+            </Path>
+
+            <Path Stroke="Red" StrokeThickness="3">
+                <Path.Data>
+                    <LineGeometry StartPoint="192 96" EndPoint="96 192"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <Canvas>
+            <Path Fill="Blue" Stroke="Red" StrokeThickness="3">
+                <Path.Data>
+                    <RectangleGeometry Rect="96 48 288 192" RadiusX="24" RadiusY="24"/>
+                    <!--Rect四个数字分别对应：左上角X左边、左上角Y坐标、宽和高; RadiusX和RadiuY指定拐角的曲率 -->
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <Canvas>
+            <Path Fill="Blue" Stroke="Red" StrokeThickness="3">
+                <Path.Data>
+                    <EllipseGeometry Center="192 144" RadiusX="144" RadiusY="96"/>
+                    <!--Center（类型为Point）椭圆的中心点；RadiuX和RadiuY（类型为Double）指定椭圆的半径-->
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <Canvas>
+            <Path Fill="DarkGray" Stroke="Black" StrokeThickness="5">
+                <Path.Data>
+                    <CombinedGeometry GeometryCombineMode="Union">
+                        <CombinedGeometry.Geometry1>
+                            <CombinedGeometry GeometryCombineMode="Union">
+                                <CombinedGeometry.Geometry1>
+                                    <EllipseGeometry Center="100 100" RadiusX="50" RadiusY="50"/>
+                                </CombinedGeometry.Geometry1>
+                                <CombinedGeometry.Geometry2>
+                                    <RectangleGeometry Rect="100 75 200 50"/>
+                                </CombinedGeometry.Geometry2>
+                            </CombinedGeometry>
+                        </CombinedGeometry.Geometry1>
+                        <CombinedGeometry.Geometry2>
+                            <EllipseGeometry Center="300 100" RadiusX="50" RadiusY="50"/>
+                        </CombinedGeometry.Geometry2>
+                    </CombinedGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <Canvas>
+            <Path Fill="Aqua" Stroke="Maroon" StrokeThickness="3">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="192 192">
+                            <ArcSegment Point="192 288" Size="48 48"/>
+                            <LineSegment Point="480 288"/>
+                            <ArcSegment Point="480 192" Size="48 48"/>
+                            <LineSegment Point="384 192"/>
+                            <ArcSegment Point="288 192" Size="48 48"/>
+                            <LineSegment Point="192 192"/>
+                        </PathFigure>
+
+                        <PathFigure StartPoint="336 200" IsClosed="True">
+                            <ArcSegment Point="336 176" Size="12 12"/>
+                            <ArcSegment Point="336 200" Size="12 12"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </UniformGrid>
+</Page>

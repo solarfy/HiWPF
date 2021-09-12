@@ -179,6 +179,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GraphicalShapes", "Graphica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalShapes", "GraphicalShapes\GraphicalShapes.csproj", "{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GeometriesAndPaths", "GeometriesAndPaths", "{56E17ACE-6FD8-4823-8FE2-F67404B55888}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometriesAndPaths", "GeometriesAndPaths\GeometriesAndPaths.csproj", "{BEE4C332-D6DA-44C5-B6D7-159CBBD591E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextGeometryDemo", "TextGeometryDemo\TextGeometryDemo.csproj", "{ADC115C7-9D76-4C9C-BBBD-A4F6E966651D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -453,6 +459,14 @@ Global
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE4C332-D6DA-44C5-B6D7-159CBBD591E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE4C332-D6DA-44C5-B6D7-159CBBD591E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE4C332-D6DA-44C5-B6D7-159CBBD591E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE4C332-D6DA-44C5-B6D7-159CBBD591E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADC115C7-9D76-4C9C-BBBD-A4F6E966651D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADC115C7-9D76-4C9C-BBBD-A4F6E966651D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADC115C7-9D76-4C9C-BBBD-A4F6E966651D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADC115C7-9D76-4C9C-BBBD-A4F6E966651D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -525,6 +539,8 @@ Global
 		{40C1AFFE-7E65-4871-AB8B-E1A60FB4AAD4} = {BDAB8945-A638-4BFF-B976-E40559C27722}
 		{54D2F20A-11EB-42EA-9151-3EB76CEF048D} = {E8EA2D16-6A53-48BF-9508-D92087A33CFD}
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F} = {89327CCF-0E71-4620-90E1-DBB047667917}
+		{BEE4C332-D6DA-44C5-B6D7-159CBBD591E1} = {56E17ACE-6FD8-4823-8FE2-F67404B55888}
+		{ADC115C7-9D76-4C9C-BBBD-A4F6E966651D} = {56E17ACE-6FD8-4823-8FE2-F67404B55888}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C7A6E06-119B-446D-99C0-CC5E342A8BD5}

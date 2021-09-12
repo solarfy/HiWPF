@@ -1,0 +1,97 @@
+﻿<NavigationWindow x:Class="GeometriesAndPaths.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeometriesAndPaths"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" ShowsNavigationUI="False">
+    <NavigationWindow.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" MinWidth="100"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="8*" MinWidth="100"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="12,6"/>
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>
+                </StackPanel.Resources>
+                
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/GeomertyDemo.xaml" TargetName="frame">
+                        GeomertyDemo
+                    </Hyperlink>    
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/OverlappingRectangles.xaml" TargetName="frame">
+                        OverlappingRectangles
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/FourOverlappingCircles.xaml" TargetName="frame">
+                        FourOverlappingCircles
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/CombinedGeometryModes.xaml" TargetName="frame">
+                        CombinedGeometryModes
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/MultipleLineSegments.xaml" TargetName="frame">
+                        MultipleLineSegments
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/ArcPossibllitles.xaml" TargetName="frame">
+                        ArcPossibllitles
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/Bezier.xaml" TargetName="frame">
+                        贝塞尔曲线
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/BezierExperimenter.xaml" TargetName="frame">
+                        贝塞尔曲线实验
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/PolyBezier.xaml" TargetName="frame">
+                        PolyBezier
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/PathMinLanguage.xaml" TargetName="frame">
+                        Path迷你语言
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink NavigateUri="Pages/ClippedElement.xaml" TargetName="frame">
+                        图形切割
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+
+            <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" Background="Silver"/>
+
+            <Frame Name="frame" Grid.Column="2" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </NavigationWindow.Content>
+</NavigationWindow>

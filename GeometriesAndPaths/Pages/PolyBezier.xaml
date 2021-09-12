@@ -1,0 +1,70 @@
+﻿<Page x:Class="GeometriesAndPaths.Pages.PolyBezier"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GeometriesAndPaths.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PolyBezier">
+
+    <!--
+        定义多条贝塞尔曲线PolyBezierSegment：对点的个数没有限制，但只有点数为3的倍数才合理。
+        第0点为起始点，第一个点和第二个点是控制点，第三个点是控制点同时也是第二段曲线的起始点，第四个点和第五个点为第二段的控制点，依此类推。
+    
+        光滑的贝塞尔曲线连接：第一个曲线的第二个控制点，第一个曲线的结束点（第二个曲线的起始点）以及第二个曲线的第一个控制点，必须共线（同一条线上）。
+    -->
+    
+    <UniformGrid>
+        <Canvas>
+            <!--贝塞尔曲线模拟出的一个圆-->
+            <Path Canvas.Left="150" Canvas.Top="150" Stroke="Black">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigure StartPoint="0 100">
+                                <PolyBezierSegment Points="55 100, 100 55, 100 0, 100 -55, 55 -100, 0 -100, -55 -100, -100 -55, -100 0, -100 55, -55 100, 0 100"/>
+                            </PathFigure>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <Canvas>
+            <!--使用渐变画刷绘制一个无限大的符号-->
+            <Path Canvas.Left="150" Canvas.Top="150" StrokeThickness="25">
+                <Path.Stroke>
+                    <LinearGradientBrush>
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.00" Color="Red"/>
+                            <GradientStop Offset="0.16" Color="Orange"/>
+                            <GradientStop Offset="0.33" Color="Yellow"/>
+                            <GradientStop Offset="0.50" Color="Green"/>
+                            <GradientStop Offset="0.67" Color="Blue"/>
+                            <GradientStop Offset="0.84" Color="Indigo"/>
+                            <GradientStop Offset="1.00" Color="Violet"/>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Path.Stroke>
+
+                <Path.Data>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigure StartPoint="0 -100">
+                                <PolyBezierSegment Points="-55 -100, -100 -55, -100 0,
+                                                   -100 55, -55 100, 0 100,
+                                                   55 100, 100 50, 150 0,
+                                                   200 -50, 245 -100, 300 -100,
+                                                   355 -100, 400 -55, 400 0,
+                                                   400 55, 355 100, 300 100,
+                                                   245 100, 200 50, 150 0,
+                                                   100 -50, 55 -100, 0 -100"/>
+                            </PathFigure>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </UniformGrid>
+</Page>

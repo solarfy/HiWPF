@@ -1,0 +1,50 @@
+﻿<Page x:Class="GeometriesAndPaths.Pages.PathMinLanguage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GeometriesAndPaths.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PathMinLanguage">
+
+    <Canvas>
+        <!--M：移动（move），相当于PathFigure的StartPoint；L：画线（line）；Z：最后一个英文字母表示关闭figure-->
+        <!--后面可以跟着另一个M命令，以开始一个新的figure。如果不用M，就开始新的figure，表示新figure是从上一个figure最后一个点开始-->
+        <!--新的figur一定以M开始，或者在一个Z之后开始-->
+        <Path Fill="Aqua" Stroke="Magenta" StrokeThickness="3"
+              Data="M 50 75 L 250 75, 250 275, 50 275 Z"/>
+
+        <!--H和V分别绘制水平和竖直线到特定坐标点-->
+        <!--不加H 50只显示一个三角形-->
+        <Path Canvas.Left="300" Fill="Aqua" Stroke="Magenta" StrokeThickness="3"
+              Data="M 50 75 H 250 V 275 H 50 Z"/>
+        
+        <!--小写字母通常和大写字母作用一样，但是改用相对位置-->
+        <!--h和v后面的数字是长度，而非坐标-->
+        <!--不加h -200只显示一个三角形-->
+        <Path Canvas.Left="600" Fill="Aqua" Stroke="Magenta" StrokeThickness="3"
+              Data="M 50 75 h 200 v 200 h -200 Z"/>
+
+        <!--小写l画线命令，此处不是坐标而实水平与垂直方向上偏移量-->
+        <Path Canvas.Top="300" Fill="Aqua" Stroke="Magenta" StrokeThickness="3"
+              Data="M 50 75 l 200 0, 0 200, -200 0 Z"/>
+        
+        <!--如果设定FillRule为NonZero，而不是默认的EvenOdd，则需要在开始放置一个F1(F0是默认值)-->
+
+        <!--通过计算第一个控制点，使得曲线光滑的连接到前一条曲线，来实现一个光滑的三次贝塞尔曲线-->
+        <!--贝塞尔曲线起始点是前面曲线的第二个控制点连到被计算出来点的线段的中点-->
+        <!--S 三次贝塞尔曲线-->
+        <Path Canvas.Left="450" Canvas.Top="480" Stroke="Black"
+              Data="M 0 -100
+                    C -55 -100, -100 -55, -100 0
+                    S -55 100, 0 100
+                    S 100 50, 150 0
+                    S 245 -100, 300 -100
+                    S 400 -55, 400 0
+                    S 355 100, 300 100
+                    S 200 50, 150 0
+                    S 55 -100, 0 -100"/>
+
+    </Canvas>
+</Page>

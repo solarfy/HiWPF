@@ -1,0 +1,58 @@
+﻿<Page x:Class="GeometriesAndPaths.Pages.ClippedElement"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GeometriesAndPaths.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClippedElement">
+
+    <!--几何图形不只可以用来绘图，还可以用来切割。UIElement定义了一个Clip属性，类型为Geometry-->
+    <!--可将Clip设定成迷你语言字符串；如果-因该被绘制的几何图形，没有被element绘制，则该几何图形的任何一部分都不会被填充 -->
+    
+    <Canvas>
+        <!--4条弧线 头两条弧线定义了一个椭圆 后两天弧线定义了椭圆内的一个小圆-->
+        <Button Canvas.Left="100" Canvas.Top="100" FontSize="24" Width="200" Height="100"
+                Clip="M 0 50 A 100 50 0 0 0 200 50
+                             A 100 50 0 0 0   0 50
+                     M 90 50 A  10 10 0 0 0 110 50
+                             A  10 10 0 0 0  90 50">
+            Clipped Button
+        </Button>
+
+        <Button Canvas.Left="320" Canvas.Top="100" FontSize="24" Width="200" Height="100">
+            <Button.Clip>
+                <PathGeometry>
+                    <!--大椭圆-->
+                    <PathFigure StartPoint="0 50">
+                        <ArcSegment Point="200 50" Size="100, 50" IsLargeArc="False" RotationAngle="0"/>
+                        <ArcSegment Point="0 50" Size="100, 50" IsLargeArc="False" RotationAngle="0"/>
+                    </PathFigure>
+                    <!--小圆-->
+                    <PathFigure StartPoint="90 50">
+                        <ArcSegment Size="10, 10" Point="110, 50"/>
+                        <ArcSegment Size="10, 10" Point="90, 50"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Button.Clip>
+            Clipped Button
+        </Button>
+
+        <Button Canvas.Left="540" Canvas.Top="100" FontSize="24" Width="200" Height="100">
+            <Button.Clip>
+                <GeometryGroup>
+                    <!--大椭圆-->
+                    <EllipseGeometry RadiusX="100" RadiusY="50" Center="100, 50"/>
+                    <!--小圆-->
+                    <EllipseGeometry RadiusX="10" RadiusY="10" Center="100, 50"/>
+                </GeometryGroup>
+            </Button.Clip>
+            Clipped Button
+        </Button>
+
+        <Border Canvas.Top="200"
+               Background="Orange" Width="450" Height="450"
+               Clip="M 300 130 L 250 350 L 450 350 L 400 130 A 70 70 0 1 0 300 130"/>
+    </Canvas>
+</Page>

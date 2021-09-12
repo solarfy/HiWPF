@@ -1,0 +1,64 @@
+﻿<Page x:Class="GeometriesAndPaths.Pages.MultipleLineSegments"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GeometriesAndPaths.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MultipleLineSegments">
+
+    <UniformGrid>
+        <Canvas>
+            <!--只显示四条边 可以加入第5个LineSegment对象或者PathFigure的IsClosed属性为true-->
+            <Path Fill="Aqua" Stroke="Maroon" StrokeThickness="3">
+                <Path.Data>
+                    <!--PathGeometry对象是PathFigure对象的集合，每个PathFigure是相互连接的PathSegment对象，PathSegment是一条直线或曲线-->
+                    <!--PathGeometry类型有一个Figures属性类型是PathFigureCollection；PathFigur类型有一个Segments属性类型是PathSegmentCollection-->
+                    <PathGeometry>
+                        <PathFigure StartPoint="144 72" IsClosed="False" IsFilled="True">
+                            <!--IsFilled控制是否填充内部区域，即使区域没有闭合，该区域也会像闭合时一样填充-->
+                            <!--内部中心区域根据FillRule属性进行填充-->
+                            <LineSegment Point="200 246"/>
+                            <LineSegment Point="53 138"/>
+                            <LineSegment Point="235 138"/>
+                            <LineSegment Point="88 246"/>
+                            <!--<LineSegment Point="144 72"/>-->
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        
+        <Canvas>
+            <!--绘制一连串相互连接的直线，另一个做法是利用PolyLineSegment；Points类型为PointCollection-->
+            <Path Fill="Aqua" Stroke="Maroon" StrokeThickness="3">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="144 72" IsClosed="True">
+                            <PolyLineSegment Points="200 246, 53 138, 235 138, 88 246"/>
+                            <!--PolyLineSegment后面还有另一个segment，这条segment会从PolyLineSegment最后一点延续下去-->
+                            <!--PathFigure定义figure开始，每个segment都包含一个或多个点，会从上一个segment的最后一个点延续下去-->
+                            <LineSegment Point="150 23"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <Canvas>
+            <Path Fill="Aqua" Stroke="Maroon" StrokeThickness="3">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="144 72" IsClosed="True">
+                            <PolyLineSegment Points="200 246, 53 138, 235 138, 88 246"/>
+                        </PathFigure>
+                        <PathFigure StartPoint="168 96" IsClosed="True">
+                            <PolyLineSegment Points="224 260, 77 162, 259 162, 112 270"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </UniformGrid>
+</Page>
