@@ -1,0 +1,80 @@
+﻿<Page x:Class="GraphicsTransforms.Pages.RenserTransformAndLayoutTransform"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphicsTransforms.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RenserTransformAndLayoutTransform">
+
+    <!--
+        LayoutTransform位移变换无效。
+        LayoutTransform会引发MeasureOverride和ArrangeOverride的调用，进行一次新的layout，这使得当element进行layout时，transform会被考虑进去。 
+    
+        RenderTransformOrigin：当变换时需要元素坐标点，却又无法确定元素的具体尺寸时，可用该属性。
+        使用该属性为RenderTransform设定原点，坐标时整个element尺寸的某个比例（类似于渐变画刷）
+    -->
+    <StackPanel TextBlock.FontSize="18pt">
+        <TextBlock Margin="24" Text="RenderTransform"/>
+        <UniformGrid Rows="3" Columns="3">
+            <Button Content="Button1"/>
+            <Button Content="Button2"/>
+            <Button Content="Button3"/>
+            <Button Content="Button4"/>
+            <Button Content="Button5" RenderTransformOrigin="0.5 0.5">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="45"/>
+                </Button.RenderTransform>
+            </Button>
+            <Button Content="Button6"/>
+            <Button Content="Button7"/>
+            <Button Content="Button8"/>
+            <Button Content="Button9"/>
+        </UniformGrid>
+
+        <TextBlock Margin="24" Text="LayoutTransform"/>
+        <UniformGrid Rows="3" Columns="3">
+            <Button Content="Button1"/>
+            <Button Content="Button2"/>
+            <Button Content="Button3"/>
+            <Button Content="Button4"/>
+            <Button Content="Button5">
+                <Button.LayoutTransform>
+                    <RotateTransform Angle="45"/>
+                </Button.LayoutTransform>
+            </Button>
+            <Button Content="Button6"/>
+            <Button Content="Button7"/>
+            <Button Content="Button8"/>
+            <Button Content="Button9"/>
+        </UniformGrid>
+
+        <Grid Width="50" Height="50">
+            <!--按钮会以Grid的四个角当作旋转中心-->
+            <Button Content="1" RenderTransformOrigin="0 0">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="225"/>
+                </Button.RenderTransform>
+            </Button>
+
+            <Button Content="2" RenderTransformOrigin="1 0">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="135"/>
+                </Button.RenderTransform>
+            </Button>
+
+            <Button Content="3" RenderTransformOrigin="1 1">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="225"/>
+                </Button.RenderTransform>
+            </Button>
+
+            <Button Content="4" RenderTransformOrigin="0 1">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="135"/>
+                </Button.RenderTransform>
+            </Button>
+        </Grid>
+    </StackPanel>
+</Page>

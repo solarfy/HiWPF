@@ -185,6 +185,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextGeometryDemo", "Geometr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalShapes", "GraphicalShapes\GraphicalShapes\GraphicalShapes.csproj", "{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GraphicsTransforms", "GraphicsTransforms", "{20238F8C-CCE0-45D6-A635-376867D8BD6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsTransforms", "GraphicsTransforms\GraphicsTransforms\GraphicsTransforms.csproj", "{811315E7-395C-4F92-966D-4FC6A7D0EF23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -467,6 +471,10 @@ Global
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811315E7-395C-4F92-966D-4FC6A7D0EF23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811315E7-395C-4F92-966D-4FC6A7D0EF23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811315E7-395C-4F92-966D-4FC6A7D0EF23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811315E7-395C-4F92-966D-4FC6A7D0EF23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -541,6 +549,7 @@ Global
 		{BEE4C332-D6DA-44C5-B6D7-159CBBD591E1} = {56E17ACE-6FD8-4823-8FE2-F67404B55888}
 		{ADC115C7-9D76-4C9C-BBBD-A4F6E966651D} = {56E17ACE-6FD8-4823-8FE2-F67404B55888}
 		{5FB829C6-4EC7-4F4E-ABE6-5C67A8911C4F} = {89327CCF-0E71-4620-90E1-DBB047667917}
+		{811315E7-395C-4F92-966D-4FC6A7D0EF23} = {20238F8C-CCE0-45D6-A635-376867D8BD6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C7A6E06-119B-446D-99C0-CC5E342A8BD5}

@@ -1,0 +1,38 @@
+﻿<Page x:Class="GraphicsTransforms.Pages.MatrixTransform"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphicsTransforms.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MatrixTransform">
+
+    <Canvas>
+        <!--MatrixTransform-定义了一个名为Matrix类型为Matrix的属性-->
+        <Button Canvas.Left="50" Canvas.Top="200" Width="200" Height="80">
+            Rotated
+            <Button.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix>
+                        <Matrix M11="0.866" M12="-0.5" M21="0.5" M22="0.866"/>
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Button.RenderTransform>
+        </Button>
+
+        <!--用字符串写矩阵的6个值-->
+        <Button Canvas.Left="300" Canvas.Top="200" Width="200" Height="80">
+            Rotated
+            <Button.RenderTransform>
+                <MatrixTransform Matrix="0.866 -0.5 0.5 0.866 0 0"/>
+            </Button.RenderTransform>
+        </Button>
+
+        <!--用矩阵字符串直接设置RenderTransform或LayoutTransform-->
+        <Button Canvas.Left="550" Canvas.Top="200" Width="200" Height="80"
+                RenderTransform="0.866 -0.5 0.5 0.866 0 0">
+            Rotated            
+        </Button>
+    </Canvas>
+</Page>
