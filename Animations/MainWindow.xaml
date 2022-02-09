@@ -1,0 +1,165 @@
+﻿<NavigationWindow x:Class="Animations.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Animations"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" ShowsNavigationUI="False">
+    <NavigationWindow.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" MinWidth="100"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="8*" MinWidth="100"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="12,6,12,6"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/SomeSimpleAnimations.xaml" TargetName="frame">
+                            一些简单的动画
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/ColorRadioButtons.xaml" TargetName="frame">
+                            ColorRadioButtons
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/FishEyeButton.xaml" TargetName="frame">
+                            FishEyeButton
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/ControllingTheStoryboard.xaml" TargetName="frame">
+                            控制故事版
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/RenderTransformVersusLayoutTransform.xaml" TargetName="frame">
+                            RenderTransform与LayoutTransform
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/TotalEclipseOfTheSun.xaml" TargetName="frame">
+                            日全食
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/AnimatedTextTransform.xaml" TargetName="frame">
+                            文字三维空间旋转
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/SquaringTheCircle.xaml" TargetName="frame">
+                            方与圆（PointAnimation）
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/PuisatingRectangle.xaml" TargetName="frame">
+                            跳动变色的方块
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/ExpandingCircles.xaml" TargetName="frame">
+                            扩大的圆
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/InfinityAnimation.xaml" TargetName="frame">
+                            ∞彩虹
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/XamlClock.xaml" TargetName="frame">
+                            时钟1
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/AllXamlClock.xaml" TargetName="frame">
+                            时钟2
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/FourSidedBounce.xaml" TargetName="frame">
+                            四边弹跳
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/BetterBouncingBall.xaml" TargetName="frame">
+                            变速动画
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/SimpleKeyFrameAnimation.xaml" TargetName="frame">
+                            简单关键帧动画
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/SecondHandSteps.xaml" TargetName="frame">
+                            秒针
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/Diner.xaml" TargetName="frame">
+                            霓虹文字
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/SplineKeyFrameExperiment.xaml" TargetName="frame">
+                            SplineKeyFrameExperiment
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/NewtonsCradle.xaml" TargetName="frame">
+                            牛顿摆
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/SimplePathAnimation.xaml" TargetName="frame">
+                            简单的路径动画
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock>
+                        <Hyperlink NavigateUri="Pages/UnicycleMan.xaml" TargetName="frame">
+                            单轮车
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+                
+
+            <GridSplitter Grid.Column="1" Width="4" VerticalAlignment="Stretch" Background="Silver"/>
+
+            <Frame Grid.Column="2" Name="frame" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </NavigationWindow.Content>
+</NavigationWindow>

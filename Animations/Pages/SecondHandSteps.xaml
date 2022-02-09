@@ -1,0 +1,37 @@
+﻿<Page x:Class="Animations.Pages.SecondHandSteps"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Animations.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SecondHandSteps">
+
+    <Canvas>
+        <Line Stroke="Black" StrokeThickness="3" X1="0" Y1="0" X2="0" Y2="-100" Canvas.Left="150" Canvas.Top="150">
+            <Line.RenderTransform>
+                <RotateTransform x:Name="xform1"/>
+            </Line.RenderTransform>
+        </Line>
+
+        <Line Stroke="Black" StrokeThickness="3" X1="0" Y1="0" X2="0" Y2="-100" Canvas.Left="450" Canvas.Top="150">
+            <Line.RenderTransform>
+                <RotateTransform x:Name="xform2"/>
+            </Line.RenderTransform>
+        </Line>
+
+        <Canvas.Triggers>
+            <EventTrigger RoutedEvent="Canvas.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="xform1" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:1" RepeatBehavior="Forever"/>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="xform2" Storyboard.TargetProperty="Angle" RepeatBehavior="Forever" IsCumulative="True">
+                            <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="6"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Canvas.Triggers>
+    </Canvas>
+</Page>

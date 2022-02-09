@@ -1,0 +1,71 @@
+﻿<Page x:Class="Animations.Pages.XamlClock"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Animations.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="XamlClock">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type Path}">
+            <Setter Property="Stroke" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+            <Setter Property="StrokeStartLineCap" Value="Round"/>
+            <Setter Property="StrokeEndLineCap" Value="Round"/>
+            <Setter Property="StrokeLineJoin" Value="Round"/>
+            <Setter Property="StrokeDashCap" Value="Round"/>
+        </Style>
+    </Page.Resources>
+    
+    <Viewbox>
+        <Canvas Width="200" Height="200">
+            <Canvas.RenderTransform>
+                <TranslateTransform X="100" Y="100"/>
+            </Canvas.RenderTransform>
+
+            <Path Data="M 0 -90 A 90 90 0 1 1 -0.01 -90" StrokeDashArray="0 3.14159" StrokeThickness="3"/>
+
+            <Path Data="M 0 -90 A 90 90 0 1 1 -0.01 -90" StrokeDashArray="0 7.854" StrokeThickness="6"/>
+
+            <!--时针 指向上-->
+            <Path Data="M 0 15 L 10 0, 0 -60, -10 0 Z" Fill="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="xformHour"/>
+                </Path.RenderTransform>
+            </Path>
+            
+            <!--分针 指向上-->
+            <Path Data="M 0 20 L 5 0 0 -80 -5 0 Z" Fill="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="xformMinute"/>
+                </Path.RenderTransform>
+            </Path>
+            
+            <!--秒针 指向上-->
+            <Path Data="M 0 10 L 0 -80">
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="xformSecond"/>
+                </Path.RenderTransform>                
+            </Path>
+        </Canvas>
+    </Viewbox>
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Canvas.Loaded">
+            <BeginStoryboard>
+                <!--BeginTime 负数，表示动画时间轴上选取倒叙的动画-->
+                <Storyboard Name="storyboard">
+                    <DoubleAnimation Storyboard.TargetName="xformHour" Storyboard.TargetProperty="Angle"
+                                     From="0" To="360" Duration="12:0:0" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="xformMinute" Storyboard.TargetProperty="Angle"
+                                     From="0" To="360" Duration="1:0:0" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="xformSecond" Storyboard.TargetProperty="Angle"
+                                     From="0" To="360" Duration="0:1:0" RepeatBehavior="Forever"/>
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+</Page>

@@ -1,0 +1,55 @@
+﻿<Page x:Class="Animations.Pages.ColorRadioButtons"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Animations.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ColorRadioButtons" Name="page" Background="{x:Static SystemColors.WindowBrush}">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="6"/>
+        </Style>
+    </Page.Resources>
+    
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <RadioButton Content="Red">
+            <RadioButton.Triggers>
+                <EventTrigger RoutedEvent="RadioButton.Checked">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!--没有From 所以必须设定Page的Background的初值-->
+                            <ColorAnimation Storyboard.TargetName="page" Storyboard.TargetProperty="Background.Color" To="Red" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </RadioButton.Triggers>
+        </RadioButton>
+
+        <RadioButton Content="Green">
+            <RadioButton.Triggers>
+                <EventTrigger RoutedEvent="RadioButton.Checked">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="page" Storyboard.TargetProperty="Background.Color" To="Green" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </RadioButton.Triggers>
+        </RadioButton>
+
+        <RadioButton Content="Blue">
+            <RadioButton.Triggers>
+                <EventTrigger RoutedEvent="RadioButton.Checked">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="page" Storyboard.TargetProperty="Background.Color" To="Blue" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </RadioButton.Triggers>
+        </RadioButton>
+    </StackPanel>
+</Page>

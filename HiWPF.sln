@@ -189,6 +189,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GraphicsTransforms", "Graph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsTransforms", "GraphicsTransforms\GraphicsTransforms\GraphicsTransforms.csproj", "{811315E7-395C-4F92-966D-4FC6A7D0EF23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animations", "Animations\Animations.csproj", "{CFFE54EE-3502-44BC-A94D-1CF18491A817}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -475,6 +477,10 @@ Global
 		{811315E7-395C-4F92-966D-4FC6A7D0EF23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{811315E7-395C-4F92-966D-4FC6A7D0EF23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{811315E7-395C-4F92-966D-4FC6A7D0EF23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFFE54EE-3502-44BC-A94D-1CF18491A817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFE54EE-3502-44BC-A94D-1CF18491A817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFFE54EE-3502-44BC-A94D-1CF18491A817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFFE54EE-3502-44BC-A94D-1CF18491A817}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,108 @@
+﻿<Page x:Class="Animations.Pages.SimplePathAnimation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Animations.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SimplePathAnimation">
+
+    <Canvas>
+        <Canvas.Resources>
+            <PathGeometry x:Key="path" Figures="M 96 192 C 288 0, 384 384, 576 192"/>
+
+            <PathGeometry x:Key="path1" Figures="M 96 192 C 288 0, 384 384, 576 192 S 662 192 576 576 S 384 576 96 192"/>
+        </Canvas.Resources>
+        
+        <Path Fill="Blue">
+            <Path.Data>
+                <EllipseGeometry x:Name="elips" RadiusX="12" RadiusY="12"/>
+            </Path.Data>
+
+            <Path.Triggers>
+                <EventTrigger RoutedEvent="Path.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetName="elips" Storyboard.TargetProperty="Center">
+                            <PointAnimationUsingPath Duration="0:0:2.5" AutoReverse="True" RepeatBehavior="Forever">
+                                <PointAnimationUsingPath.PathGeometry>
+                                    <PathGeometry Figures="M 96 288 C 576 0, 0 0, 480 288"/>
+                                </PointAnimationUsingPath.PathGeometry>
+                            </PointAnimationUsingPath>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Path.Triggers>
+        </Path>
+
+        <!--elips的运动路径-->
+        <Path Stroke="Black" Data="M 96 288 C 576 0, 0 0, 480 288"/>
+
+        <Button Name="btn" Content="Button"/>
+        
+        <!--btn的运动路径-->
+        <Path Stroke="Red" Data="{StaticResource path}"/>
+
+        <Button Name="btn1" Content="Button1">
+            <Button.RenderTransform>
+                <RotateTransform x:Name="xform"/>
+            </Button.RenderTransform>
+        </Button>
+
+        <TextBlock x:Name="txtblk" Text="XAML" FontSize="144pt" FontFamily="Arial Black" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetName="txtblk" Storyboard.TargetProperty="Opacity" RepeatBehavior="Forever">
+                            <DoubleAnimationUsingPath Duration="0:0:4" Source="Y">
+                                <DoubleAnimationUsingPath.PathGeometry>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigure StartPoint="0 0">
+                                                <LineSegment Point="0 1"/>
+                                                <LineSegment Point="2 1"/>
+                                                <LineSegment Point="2 0"/>
+                                            </PathFigure>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </DoubleAnimationUsingPath.PathGeometry>
+                            </DoubleAnimationUsingPath>
+                            
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
+
+        <!--btn1的运动路径-->
+        <Path Stroke="Orange" Data="{StaticResource path1}"/>
+
+        <Canvas.Triggers>
+            <EventTrigger RoutedEvent="Canvas.Loaded">
+                <BeginStoryboard>
+                    <Storyboard Storyboard.TargetName="btn">
+                        <!--PathGeometry中的X和Y-->
+                        <DoubleAnimationUsingPath Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:2.5" AutoReverse="True"
+                                                  RepeatBehavior="Forever" PathGeometry="{StaticResource path}" Source="X"/>
+
+                        <DoubleAnimationUsingPath Storyboard.TargetProperty="(Canvas.Top)" Duration="0:0:2.5" AutoReverse="True"
+                                                  RepeatBehavior="Forever" PathGeometry="{StaticResource path}" Source="Y"/>
+                    </Storyboard>
+                </BeginStoryboard>
+
+                <BeginStoryboard>
+                    <Storyboard RepeatBehavior="Forever">
+                        <DoubleAnimationUsingPath Storyboard.TargetName="btn1" Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:10"
+                                                  PathGeometry="{StaticResource path1}" Source="X"/>
+
+                        <DoubleAnimationUsingPath Storyboard.TargetName="btn1" Storyboard.TargetProperty="(Canvas.Top)" Duration="0:0:10"
+                                                  PathGeometry="{StaticResource path1}" Source="Y"/>
+
+                        <DoubleAnimationUsingPath Storyboard.TargetName="xform" Storyboard.TargetProperty="Angle" Duration="0:0:10"
+                                                  PathGeometry="{StaticResource path1}" Source="Angle"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Canvas.Triggers>
+    </Canvas>
+</Page>
