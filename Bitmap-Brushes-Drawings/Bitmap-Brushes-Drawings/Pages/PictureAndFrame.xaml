@@ -1,0 +1,95 @@
+﻿<Page x:Class="Bitmap_Brushes_Drawings.Pages.PictureAndFrame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Bitmap_Brushes_Drawings.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PictureAndFrame">
+
+    <Image Stretch="None">
+        <Image.Source>
+            <DrawingImage>
+                <DrawingImage.Drawing>
+                    <!--ClipGeometry 裁剪掉相片的一个角-->
+                    <DrawingGroup ClipGeometry="M 0 -50 L 210 -50 L 210 120 L 0 250 Z" Opacity="1">
+                        <ImageDrawing Rect="5 5 200 200" ImageSource="/Bitmap-Brushes-Drawings;component/hollow.jpg"/>
+
+                        <GeometryDrawing>
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="DodgerBlue" Thickness="10" DashCap="Round">
+                                    <Pen.DashStyle>
+                                        <DashStyle Dashes="0 1"/>
+                                    </Pen.DashStyle>
+                                </Pen>
+                            </GeometryDrawing.Pen>
+
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="5 5 200 240"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+
+                        <GeometryDrawing>
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="DodgerBlue" Thickness="5"/>
+                            </GeometryDrawing.Pen>
+
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="2.5 2.5 205 245"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+
+                        <GeometryDrawing Geometry="M 10 0 L 105 -50 L 200 0">
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="Black"/>
+                            </GeometryDrawing.Pen>
+                        </GeometryDrawing>
+
+                        <!--边界呈现透明-->
+                        <DrawingGroup.OpacityMask>
+                            <RadialGradientBrush>
+                                <GradientStop Offset="0" Color="White"/>
+                                <GradientStop Offset="1" Color="Transparent"/>
+                            </RadialGradientBrush>
+                        </DrawingGroup.OpacityMask>
+
+                        <!--特效-->
+                        <DrawingGroup.BitmapEffect>
+                            <!--右下方产生阴影-->
+                            <DropShadowBitmapEffect/>
+                            <!--发光特效-->
+                            <!--<OuterGlowBitmapEffect GlowColor="Red"/>-->
+                            <!--模糊-->
+                            <!--<BlurBitmapEffect/>-->
+                        </DrawingGroup.BitmapEffect>
+                        
+                        <DrawingGroup.Transform>
+                            <!--缩小-->
+                            <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                        </DrawingGroup.Transform>
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+        </Image.Source>
+
+        <Image.RenderTransform>
+            <RotateTransform x:Name="xform"/>
+        </Image.RenderTransform>
+
+        <Image.RenderTransformOrigin>
+            <Point X="0.5" Y="0"/>
+        </Image.RenderTransformOrigin>
+
+        <Image.Triggers>
+            <EventTrigger RoutedEvent="Image.Loaded">
+                <BeginStoryboard>
+                    <Storyboard Storyboard.TargetName="xform" Storyboard.TargetProperty="Angle">
+                        <DoubleAnimation From="-10" To="10" AutoReverse="True" RepeatBehavior="Forever"
+                                         AccelerationRatio="0.5" DecelerationRatio="0.5"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Image.Triggers>
+    </Image>
+</Page>

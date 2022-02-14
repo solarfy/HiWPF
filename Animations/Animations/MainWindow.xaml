@@ -157,7 +157,7 @@
             </ScrollViewer>
                 
 
-            <GridSplitter Grid.Column="1" Width="4" VerticalAlignment="Stretch" Background="Silver"/>
+            <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch" Background="Silver"/>
 
             <Frame Grid.Column="2" Name="frame" NavigationUIVisibility="Hidden"/>
         </Grid>

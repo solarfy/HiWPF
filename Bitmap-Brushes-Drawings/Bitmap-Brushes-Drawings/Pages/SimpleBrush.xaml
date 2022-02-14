@@ -1,0 +1,112 @@
+﻿<Page x:Class="Bitmap_Brushes_Drawings.Pages.SimpleBrush"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Bitmap_Brushes_Drawings.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SimpleBrush">
+
+    <Canvas>
+        <Border Canvas.Left="10" Canvas.Top="10" Width="100" Height="100">
+            <Border.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="/Bitmap-Brushes-Drawings;component/hollow.jpg"/>
+            </Border.Background>
+        </Border>
+
+        <Border Canvas.Left="120" Canvas.Top="10" Width="100" Height="100">
+            <Border.Background>
+                <VisualBrush Stretch="Uniform">
+                    <VisualBrush.Visual>
+                        <Button Content="按钮？"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.Background>
+        </Border>
+
+        <Border Canvas.Left="230" Canvas.Top="10" Width="100" Height="100">
+            <Border.Background>
+                <DrawingBrush Stretch="Uniform">
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing Brush="Red">
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="Blue"/>
+                            </GeometryDrawing.Pen>
+
+                            <GeometryDrawing.Geometry>
+                                <EllipseGeometry Center="0, 0" RadiusX="10" RadiusY="10"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Border.Background>
+        </Border>
+
+        <Border Canvas.Left="10" Canvas.Top="120" Width="200" Height="100">
+            <Border.Background>
+                <!--Ablolute模式下使用Viewbox可以将空白区域除掉-->
+                <DrawingBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 15 60 30" Viewbox="0 0 200 100" ViewboxUnits="Absolute">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup x:Name="drawgrp">
+                            <GeometryDrawing Brush="Pink">
+                                <GeometryDrawing.Geometry>
+                                    <RectangleGeometry Rect="0 0 200 100"/>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+
+                            <GeometryDrawing Brush="Aqua">
+                                <GeometryDrawing.Pen>
+                                    <!--白色边界围绕着粉色的矩形，设置LineJoin为Bevel，可以减小该白色边界-->
+                                    <Pen Brush="Blue" Thickness="2" LineJoin="Bevel"/>
+                                </GeometryDrawing.Pen>
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <PathGeometry>
+                                            <PathFigure StartPoint="200 0" IsClosed="True" IsFilled="True">
+                                                <BezierSegment Point1="150 100" Point2="50 -50" Point3="0 50"/>
+                                                <BezierSegment Point1="50 150" Point2="150 0" Point3="200 100"/>
+                                            </PathFigure>
+                                        </PathGeometry>
+                                        <EllipseGeometry Center="35 35" RadiusX="5" RadiusY="5"/>
+                                        <EllipseGeometry Center="165 85" RadiusX="5" RadiusY="5"/>
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Border.Background>
+
+            <Label Content="{Binding ElementName=drawgrp, Path=Bounds}"/>
+        </Border>
+
+        <Border Canvas.Left="220" Canvas.Top="120" Width="400" Height="100">
+            <Border.Background>
+                <!--Tile瓷砖平铺；Viewport一个Rect型的属性，其中Left和Top也就是前两个数字可以忽略不记，Width和Height指定瓷砖的宽和高为画刷的多少倍-->
+                <!--Viewport="0 0 1 1"也就是瓷砖和画刷一样大；此处Width为0.1也就是横向有10个瓷砖-->
+                <!--ViewportUnits="Absolute"时。Viewport的Rect前两个参数会影响到画刷的位置，（0，0）表示在左上角-->
+                <VisualBrush TileMode="Tile" Viewport="0 0 0.1 1" ViewportUnits="RelativeToBoundingBox">
+                    <VisualBrush.Visual>
+                        <Button Content="Button"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.Background>
+        </Border>
+
+        <Border Canvas.Left="10" Canvas.Top="230" Width="100" Height="100">
+            <Border.Background>
+                <!--Viewbox="0.3 0.05 0.4 0.6" 只有40%的位图宽度被用来平铺，开始位置在左侧30%的地方；只有60%的位图高度被使用，开始位置是上面5%的地方；前两个值可以是负值，后两个也可以大于1-->
+                <ImageBrush TileMode="Tile" Viewport="0 0 50 60" ViewportUnits="Absolute" Viewbox="0.3 0.05 0.4 0.6" 
+                            ImageSource="/Bitmap-Brushes-Drawings;component/hollow.jpg"/>
+            </Border.Background>
+        </Border>
+
+        <Border Canvas.Left="120" Canvas.Top="230" Width="100" Height="100">
+            <Border.Background>
+                <ImageBrush TileMode="FlipXY" Viewport="0 0 50 60" ViewportUnits="Absolute" Viewbox="0.3 0.10 0.4 0.6" 
+                            ImageSource="/Bitmap-Brushes-Drawings;component/hollow.jpg"/>
+            </Border.Background>
+        </Border>
+    </Canvas>
+</Page>
